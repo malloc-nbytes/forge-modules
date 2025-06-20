@@ -1,3 +1,7 @@
+#include <unistd.h>
+#include <sys/stat.h>
+#include <pwd.h>
+#include <grp.h>
 #include <stdio.h>
 
 #include <forge/forge.h>
@@ -13,7 +17,9 @@ char *download(void) {
 }
 void build(void) {}
 void install(void) {
-        forge_str config_fp = forge_str_from(env("HOME"));
+        char *user = env("SUDO_USER");
+        forge_str config_fp = forge_str_from("/home/");
+        forge_str_concat(&config_fp, user);
         forge_str_concat(&config_fp, "/.config/i3/");
 
         mkdirp(forge_str_to_cstr(&config_fp));
@@ -22,9 +28,19 @@ void install(void) {
         sprintf(buf, "cp ./config %s", config_fp.data);
         cmd(buf);
 
+        forge_str i3config = forge_str_from(forge_str_to_cstr(&config_fp));
+        forge_str_concat(&i3config, "config");
+
+        // Change ownership of the config file to the user
+        // that called sudo.
+        struct passwd *pwd = getpwnam(user);
+        struct group *grp = getgrnam(user);
+        chown(forge_str_to_cstr(&i3config), pwd->pw_uid, grp->gr_gid);
+
         cmd("cp i3status.conf /etc/i3status.conf");
 
         forge_str_destroy(&config_fp);
+        forge_str_destroy(&i3config);
 }
 void uninstall(void) {}
 
