@@ -7,11 +7,11 @@ char *download(void) {
         return git_clone("malloc-nbytes", "bls");
 }
 void build(void) {
-        cd("src");
+        cd("src/build");
         cmd("make");
 }
 void install(void) {
-        cd("src");
+        cd("src/build");
         cmd("make install");
         cmd("make clean");
 }
