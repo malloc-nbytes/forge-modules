@@ -1,6 +1,6 @@
 #include <forge/forge.h>
 
-char *deps[] = {"far", NULL}; // Must be NULL terminated
+char *deps[] = {NULL}; // Must be NULL terminated
 
 char *getname(void) { return "camelCase_to_snake"; }
 char *getver(void) { return "1.0.0"; }
