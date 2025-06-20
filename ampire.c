@@ -16,6 +16,7 @@ void build(void) {
 void install(void) {
         cd("build");
         cmd("sudo make install");
+        cmd("ldconfig");
 }
 void uninstall(void) {
         cd("build");
