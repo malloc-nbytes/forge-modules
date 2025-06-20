@@ -24,7 +24,7 @@ void install(void) {
 
         cmd("cp i3status.conf /etc/i3status.conf");
 
-        forge_str_free(&config_fp);
+        forge_str_destroy(&config_fp);
 }
 void uninstall(void) {}
 
