@@ -31,11 +31,7 @@ void install(void) {
         forge_str i3config = forge_str_from(forge_str_to_cstr(&config_fp));
         forge_str_concat(&i3config, "config");
 
-        // Change ownership of the config file to the user
-        // that called sudo.
-        struct passwd *pwd = getpwnam(user);
-        struct group *grp = getgrnam(user);
-        chown(forge_str_to_cstr(&i3config), pwd->pw_uid, grp->gr_gid);
+        change_file_owner(forge_str_to_cstr(&i3config), user);
 
         cmd("cp i3status.conf /etc/i3status.conf");
 
