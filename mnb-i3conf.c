@@ -16,7 +16,7 @@ void install(void) {
         forge_str config_fp = forge_str_from(env("HOME"));
         forge_str_concat(&config_fp, "/.config/i3/");
 
-        mkdirp(config_fp);
+        mkdirp(forge_str_to_cstr(&config_fp));
 
         char buf[256] = {0};
         sprintf(buf, "cp ./config %s", config_fp.data);
@@ -24,7 +24,7 @@ void install(void) {
 
         cmd("cp i3status.conf /etc/i3status.conf");
 
-        forge_str_free(&home);
+        forge_str_free(&config_fp);
 }
 void uninstall(void) {}
 
