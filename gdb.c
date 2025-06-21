@@ -12,7 +12,7 @@ char *download(void) {
 }
 void build(void) {
         cmd("./configure");
-        cmd("./make -j12");
+        cmd("make -j12");
 }
 void install(void) {
         cmd("make install");
