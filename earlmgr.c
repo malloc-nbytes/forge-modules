@@ -16,8 +16,7 @@ void install(void) {
 }
 void uninstall(void) {
         char *user = get_prev_user();
-        cd("src");
-        cmd_as("earl ./earlmgr.rl -- uninstall", user);
+        cmd_as("earlmgr.rl -- uninstall", user);
 }
 
 FORGE_GLOBAL pkg package = {
