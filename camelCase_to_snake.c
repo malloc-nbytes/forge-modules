@@ -2,7 +2,7 @@
 
 char *deps[] = {NULL}; // Must be NULL terminated
 
-char *getname(void) { return "camelCase_to_snake"; }
+char *getname(void) { return "malloc-nbytes/camelCase_to_snake"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Kill those camels!"; }
 char **getdeps(void) { return deps; }

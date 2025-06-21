@@ -1,6 +1,6 @@
 #include <forge/forge.h>
 
-char *getname(void) { return "bless"; }
+char *getname(void) { return "malloc-nbytes/bless"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Better `less`"; }
 char *download(void) {

@@ -1,6 +1,6 @@
 #include <forge/forge.h>
 
-char *getname(void) { return "earl"; }
+char *getname(void) { return "malloc-nbytes/earl"; }
 char *getver(void) { return "0.9.7"; }
 char *getdesc(void) { return "A scripting language to replace BASH"; }
 char *download(void) {

@@ -1,6 +1,6 @@
 #include <forge/forge.h>
 
-char *getname(void) { return "ampire"; }
+char *getname(void) { return "malloc-nbytes/ampire"; }
 char *getver(void) { return "0.1.5"; }
 char *getdesc(void) { return "A music player in the terminal"; }
 char *download(void) {

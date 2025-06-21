@@ -2,7 +2,7 @@
 
 char *deps[] = {NULL}; // Must be NULL terminated
 
-char *getname(void) { return "bm"; }
+char *getname(void) { return "malloc-nbytes/bm"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Bookmark directories in the terminal"; }
 char **getdeps(void) { return deps; }

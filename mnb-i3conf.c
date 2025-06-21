@@ -8,7 +8,7 @@
 
 char *deps[] = {NULL}; // Must be NULL terminated
 
-char *getname(void) { return "mnb-i3conf"; }
+char *getname(void) { return "malloc-nbytes/minimal-i3conf"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "A (almost) stock i3 config by malloc-nbytes"; }
 char **getdeps(void) { return deps; }

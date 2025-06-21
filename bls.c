@@ -1,6 +1,6 @@
 #include <forge/forge.h>
 
-char *getname(void) { return "bls"; }
+char *getname(void) { return "malloc-nbytes/bls"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "An alternative to `ls`"; }
 char *download(void) {
