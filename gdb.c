@@ -11,14 +11,28 @@ char *download(void) {
         return "binutils-gdb";
 }
 void build(void) {
-        cmd("./configure");
+        mkdirp("build");
+        cd("build");
+        cmd("../configure \
+  --enable-gdb \
+  --disable-binutils \
+  --disable-ld \
+  --disable-gas \
+  --disable-gprof \
+  --disable-gprofng \
+  --disable-gold \
+  --disable-sim \
+  --disable-rda \
+  --enable-targets=host-only \
+  --prefix=/usr/local");
+        cmd("../configure");
         cmd("make -j12");
 }
 void install(void) {
-        cmd("make install");
+        //cmd("make install");
 }
 void uninstall(void) {
-        cmd("make uninstall");
+        //cmd("make uninstall");
 }
 
 FORGE_GLOBAL pkg package = {
