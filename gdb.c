@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include <forge/forge.h>
 
 char *deps[] = {NULL}; // Must be NULL terminated
@@ -7,8 +9,9 @@ char *getver(void) { return "16.2.0"; }
 char *getdesc(void) { return "The GNU Project Debugger"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
-        cmd("git clone https://sourceware.org/git/binutils-gdb.git --depth=1");
+        printf("%s is unimplemented\n", getname());
         return "binutils-gdb";
+        cmd("git clone https://sourceware.org/git/binutils-gdb.git --depth=1");
 }
 void build(void) {
         mkdirp("build");
@@ -29,10 +32,14 @@ void build(void) {
         cmd("make -j12");
 }
 void install(void) {
-        //cmd("make install");
+        printf("%s is unimplemented\n", getname());
+        return;
+        cmd("make install");
 }
 void uninstall(void) {
-        //cmd("make uninstall");
+        printf("%s is unimplemented\n", getname());
+        return;
+        cmd("make uninstall");
 }
 
 FORGE_GLOBAL pkg package = {
