@@ -15,11 +15,12 @@ void build(void) {
 }
 void install(void) {
         cd("build");
-        cmd("sudo make install");
+        cmd("make install");
 }
 void uninstall(void) {
         cd("build");
-        cmd("sudo make uninstall");
+        cmd("make uninstall");
+        cmd("rm -r /usr/local/include/EARL");
 }
 
 FORGE_GLOBAL pkg package = {
