@@ -2,7 +2,7 @@
 #include <forge/cmd.h>
 
 char *getname(void) { return "malloc-nbytes/AnimX"; }
-char *getver(void) { return "1.0"; }
+char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Animated Wallpapers for X"; }
 char *download(void) {
         cmd("git clone https://www.github.com/malloc-nbytes/AnimX.git/");
