@@ -12,11 +12,9 @@ char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("cli", "cli");
 }
-void build(void) {
-        cmd("make");
-}
+void build(void) {}
 void install(void) {
-        cmd("make install");
+        cmd("make install prefix=/usr");
 }
 void uninstall(void) {
         cmd("make uninstall");
