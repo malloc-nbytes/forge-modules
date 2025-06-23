@@ -5,7 +5,7 @@
 
 char *deps[] = {NULL}; // Must be NULL terminated
 
-char *getname(void) { return "GNU/gdb"; }
+char *getname(void) { return "GNU@gdb"; }
 char *getver(void) { return "16.2.0"; }
 char *getdesc(void) { return "The GNU Project Debugger"; }
 char **getdeps(void) { return deps; }

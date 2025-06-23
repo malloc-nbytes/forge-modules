@@ -1,23 +1,25 @@
 #include <forge/forge.h>
 
-char *deps[] = {NULL}; // Must be NULL terminated
-
-char *getname(void) { return "naskst/gf"; }
+char *getname(void) { return "malloc-nbytes@bless"; }
 char *getver(void) { return "1.0.0"; }
-char *getdesc(void) { return "A GDB frontend for Linux"; }
-char **getdeps(void) { return deps; }
+char *getdesc(void) { return "Better `less`"; }
 char *download(void) {
-        cmd("git clone https://github.com/nakst/gf.git");
-        return "gf";
+        cmd("git clone https://www.github.com/malloc-nbytes/bless.git/");
+        return "bless";
 }
 void build(void) {
-        cmd("./build.sh");
+        cmd("mkdir build");
+        cd("build");
+        cmd("cmake -S .. -B .");
+        cmd("make");
 }
 void install(void) {
-        cmd("cp ./gf2 /usr/local/bin/");
+        cd("build");
+        cmd("sudo make install");
 }
 void uninstall(void) {
-        cmd("rm /usr/local/bin/gf2");
+        cd("build");
+        cmd("sudo make uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

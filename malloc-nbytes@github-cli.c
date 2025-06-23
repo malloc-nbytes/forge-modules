@@ -5,7 +5,7 @@
 
 char *deps[] = {/*"golang"*/NULL}; // Must be NULL terminated
 
-char *getname(void) { return "Github/github-cli"; }
+char *getname(void) { return "Github@github-cli"; }
 char *getver(void) { return "2.68.1"; }
 char *getdesc(void) { return "GitHub’s official command line tool "; }
 char **getdeps(void) { return deps; }

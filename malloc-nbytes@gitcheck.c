@@ -2,21 +2,28 @@
 
 char *deps[] = {NULL}; // Must be NULL terminated
 
-char *getname(void) { return "malloc-nbytes/far"; }
+char *getname(void) { return "malloc-nbytes@gitcheck"; }
 char *getver(void) { return "1.0.0"; }
-char *getdesc(void) { return "Find and replace"; }
+char *getdesc(void) { return "Check for unstaged git changes in directories"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
-        cmd("git clone https://github.com/malloc-nbytes/far.git");
-        return "far";
+        cmd("git clone https://www.github.com/malloc-nbytes/gitcheck.git/");
+        return "gitcheck";
 }
-void build(void) {}
+void build(void) {
+        cd("src");
+        //cmd("make");
+        make(NULL);
+}
 void install(void) {
-        cmd("./install.sh");
+        cd("src");
+        //cmd("make install");
+        make("install");
 }
 void uninstall(void) {
-        cmd("rm /usr/local/bin/far.py");
+        cmd("rm /usr/local/bin/gitcheck");
 }
+int update(void) { return 0; }
 
 FORGE_GLOBAL pkg package = {
         .name = getname,

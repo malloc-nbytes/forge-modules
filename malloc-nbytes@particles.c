@@ -1,8 +1,8 @@
 #include <forge/forge.h>
 
-char *deps[] = {"raysan5/raylib", NULL}; // Must be NULL terminated
+char *deps[] = {"raysan5@raylib", NULL}; // Must be NULL terminated
 
-char *getname(void) { return "malloc-nbytes/particles"; }
+char *getname(void) { return "malloc-nbytes@particles"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Just a fun graphics application"; }
 char **getdeps(void) { return deps; }
@@ -10,13 +10,13 @@ char *download(void) {
         return git_clone("malloc-nbytes", "particles");
 }
 void build(void) {
-	cmd("./build.sh");
+        cmd("./build.sh");
 }
 void install(void) {
-	cmd("cp ./particles /usr/local/bin");
+        cmd("cp ./particles /usr/local/bin");
 }
 void uninstall(void) {
-	cmd("rm /usr/local/bin/particles");
+        cmd("rm /usr/local/bin/particles");
 }
 
 FORGE_GLOBAL pkg package = {

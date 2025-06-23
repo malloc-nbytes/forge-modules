@@ -1,25 +1,26 @@
 #include <forge/forge.h>
 
-char *getname(void) { return "malloc-nbytes/bless"; }
-char *getver(void) { return "1.0.0"; }
-char *getdesc(void) { return "Better `less`"; }
+char *getname(void) { return "malloc-nbytes@earl"; }
+char *getver(void) { return "0.9.7"; }
+char *getdesc(void) { return "A scripting language to replace BASH"; }
 char *download(void) {
-        cmd("git clone https://www.github.com/malloc-nbytes/bless.git/");
-        return "bless";
+        cmd("git clone https://www.github.com/malloc-nbytes/earl.git/");
+        return "earl";
 }
 void build(void) {
         cmd("mkdir build");
         cd("build");
         cmd("cmake -S .. -B .");
-        cmd("make");
+        cmd("make -j12");
 }
 void install(void) {
         cd("build");
-        cmd("sudo make install");
+        cmd("make install");
 }
 void uninstall(void) {
         cd("build");
-        cmd("sudo make uninstall");
+        cmd("make uninstall");
+        cmd("rm -r /usr/local/include/EARL");
 }
 
 FORGE_GLOBAL pkg package = {

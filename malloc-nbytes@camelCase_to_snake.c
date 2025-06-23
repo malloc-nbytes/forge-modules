@@ -2,34 +2,31 @@
 
 char *deps[] = {NULL}; // Must be NULL terminated
 
-char *getname(void) { return "malloc-nbytes/bm"; }
+char *getname(void) { return "malloc-nbytes@camelCase_to_snake"; }
 char *getver(void) { return "1.0.0"; }
-char *getdesc(void) { return "Bookmark directories in the terminal"; }
+char *getdesc(void) { return "Kill those camels!"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
-        cmd("git clone https://www.github.com/malloc-nbytes/bm.git/");
-        return "bm";
+        cmd("git clone https://github.com/malloc-nbytes/camelCase_to_snake.git");
+        return "camelCase_to_snake";
 }
 void build(void) {
-        cmd("mkdir build");
-        cd("build");
-        cmd("cmake -S .. -B .");
-        cmd("make");
+        cd("src");
+        cmd("./build.sh");
 }
 void install(void) {
-        cd("build");
-        cmd("make install");
+        cd("src");
+        cmd("./install.sh");
 }
 void uninstall(void) {
-        cd("build");
-        cmd("make uninstall");
+        cmd("rm /usr/local/bin/ccts");
 }
 
 FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
-        .deps = NULL,
+        .deps = getdeps,
         .download = download,
         .build = build,
         .install = install,

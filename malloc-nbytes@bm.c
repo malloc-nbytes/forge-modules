@@ -2,24 +2,23 @@
 
 char *deps[] = {NULL}; // Must be NULL terminated
 
-char *getname(void) { return "raysan5/raylib"; }
-char *getver(void) { return "5.5.0"; }
-char *getdesc(void) { return "A simple and easy-to-use library to enjoy videogames programming"; }
+char *getname(void) { return "malloc-nbytes@bm"; }
+char *getver(void) { return "1.0.0"; }
+char *getdesc(void) { return "Bookmark directories in the terminal"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
-        cmd("git clone https://github.com/raysan5/raylib.git");
-        return "raylib";
+        cmd("git clone https://www.github.com/malloc-nbytes/bm.git/");
+        return "bm";
 }
 void build(void) {
         cmd("mkdir build");
         cd("build");
-        cmd("cmake ..");
-        cmd("make -j12");
+        cmd("cmake -S .. -B .");
+        cmd("make");
 }
 void install(void) {
         cd("build");
         cmd("make install");
-        cmd("ldconfig");
 }
 void uninstall(void) {
         cd("build");

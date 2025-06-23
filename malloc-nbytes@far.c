@@ -1,22 +1,21 @@
 #include <forge/forge.h>
 
-char *getname(void) { return "malloc-nbytes/bls"; }
+char *deps[] = {NULL}; // Must be NULL terminated
+
+char *getname(void) { return "malloc-nbytes@far"; }
 char *getver(void) { return "1.0.0"; }
-char *getdesc(void) { return "An alternative to `ls`"; }
+char *getdesc(void) { return "Find and replace"; }
+char **getdeps(void) { return deps; }
 char *download(void) {
-        return git_clone("malloc-nbytes", "bls");
+        cmd("git clone https://github.com/malloc-nbytes/far.git");
+        return "far";
 }
-void build(void) {
-        cd("src/build");
-        cmd("make");
-}
+void build(void) {}
 void install(void) {
-        cd("src/build");
-        cmd("make install");
-        cmd("make clean");
+        cmd("./install.sh");
 }
 void uninstall(void) {
-        cmd("rm /usr/local/bin/bls");
+        cmd("rm /usr/local/bin/far.py");
 }
 
 FORGE_GLOBAL pkg package = {

@@ -1,11 +1,11 @@
 #include <forge/forge.h>
 
-char *getname(void) { return "malloc-nbytes/earl"; }
-char *getver(void) { return "0.9.7"; }
-char *getdesc(void) { return "A scripting language to replace BASH"; }
+char *getname(void) { return "malloc-nbytes@ampire"; }
+char *getver(void) { return "0.1.5"; }
+char *getdesc(void) { return "A music player in the terminal"; }
 char *download(void) {
-        cmd("git clone https://www.github.com/malloc-nbytes/earl.git/");
-        return "earl";
+        cmd("git clone https://www.github.com/malloc-nbytes/ampire.git/ --recursive");
+        return "ampire";
 }
 void build(void) {
         cmd("mkdir build");
@@ -15,12 +15,12 @@ void build(void) {
 }
 void install(void) {
         cd("build");
-        cmd("make install");
+        cmd("sudo make install");
+        cmd("ldconfig");
 }
 void uninstall(void) {
         cd("build");
-        cmd("make uninstall");
-        cmd("rm -r /usr/local/include/EARL");
+        cmd("sudo make uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

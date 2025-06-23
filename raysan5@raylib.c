@@ -1,26 +1,29 @@
 #include <forge/forge.h>
 
-char *getname(void) { return "malloc-nbytes/ampire"; }
-char *getver(void) { return "0.1.5"; }
-char *getdesc(void) { return "A music player in the terminal"; }
+char *deps[] = {NULL}; // Must be NULL terminated
+
+char *getname(void) { return "raysan5@raylib"; }
+char *getver(void) { return "5.5.0"; }
+char *getdesc(void) { return "A simple and easy-to-use library to enjoy videogames programming"; }
+char **getdeps(void) { return deps; }
 char *download(void) {
-        cmd("git clone https://www.github.com/malloc-nbytes/ampire.git/ --recursive");
-        return "ampire";
+        cmd("git clone https://github.com/raysan5/raylib.git");
+        return "raylib";
 }
 void build(void) {
         cmd("mkdir build");
         cd("build");
-        cmd("cmake -S .. -B .");
+        cmd("cmake ..");
         cmd("make -j12");
 }
 void install(void) {
         cd("build");
-        cmd("sudo make install");
+        cmd("make install");
         cmd("ldconfig");
 }
 void uninstall(void) {
         cd("build");
-        cmd("sudo make uninstall");
+        cmd("make uninstall");
 }
 
 FORGE_GLOBAL pkg package = {
