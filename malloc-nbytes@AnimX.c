@@ -1,7 +1,7 @@
 #include <forge/pkg.h>
 #include <forge/cmd.h>
 
-char *getname(void) { return "malloc-nbytes/AnimX"; }
+char *getname(void) { return "malloc-nbytes@AnimX"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Animated Wallpapers for X"; }
 char *download(void) {
