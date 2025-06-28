@@ -8,18 +8,18 @@ char *download(void) {
         return "bless";
 }
 void build(void) {
-        cmd("mkdir build");
+        mkdirp("build");
         cd("build");
         cmd("cmake -S .. -B .");
-        cmd("make");
+        make(NULL);
 }
 void install(void) {
         cd("build");
-        cmd("sudo make install");
+        make("install");
 }
 void uninstall(void) {
         cd("build");
-        cmd("sudo make uninstall");
+        make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

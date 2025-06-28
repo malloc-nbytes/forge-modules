@@ -8,19 +8,19 @@ char *download(void) {
         return "ampire";
 }
 void build(void) {
-        cmd("mkdir build");
+        mkdirp("build");
         cd("build");
         cmd("cmake -S .. -B .");
-        cmd("make -j12");
+        make(NULL);
 }
 void install(void) {
         cd("build");
-        cmd("sudo make install");
+        make("install");
         cmd("ldconfig");
 }
 void uninstall(void) {
         cd("build");
-        cmd("sudo make uninstall");
+        make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

@@ -30,17 +30,17 @@ void build(void) {
   --enable-targets=host-only \
   --prefix=/usr/local");
         cmd("../configure");
-        cmd("make -j12");
+        make(NULL);
 }
 void install(void) {
         printf("%s is unimplemented\n", getname());
         return;
-        cmd("make install");
+        make("install");
 }
 void uninstall(void) {
         printf("%s is unimplemented\n", getname());
         return;
-        cmd("make uninstall");
+        make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

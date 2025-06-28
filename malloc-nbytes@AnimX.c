@@ -11,13 +11,14 @@ char *download(void) {
 void build(void) {
         cmd("autoreconf --install");
         cmd("./configure");
-        cmd("make");
+        configure("./", "");
+        make(NULL);
 }
 void install(void) {
-        cmd("sudo make install");
+        make("install");
 }
 void uninstall(void) {
-        cmd("sudo make uninstall");
+        make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

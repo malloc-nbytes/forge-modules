@@ -11,15 +11,15 @@ void build(void) {
         cmd("mkdir build");
         cd("build");
         cmd("cmake -S .. -B .");
-        cmd("make -j12");
+        make(NULL);
 }
 void install(void) {
         cd("build");
-        cmd("make install");
+        make("install");
 }
 void uninstall(void) {
         cd("build");
-        cmd("make uninstall");
+        make("uninstall");
         cmd("rm -r /usr/local/include/EARL");
 }
 
