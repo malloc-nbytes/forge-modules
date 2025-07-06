@@ -10,7 +10,6 @@ char *download(void) {
 }
 void build(void) {
         cmd("autoreconf --install");
-        cmd("./configure");
         configure("./", NULL);
         make(NULL);
 }
