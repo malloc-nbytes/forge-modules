@@ -14,10 +14,10 @@ void build(void) {
         cmd("./build.sh");
 }
 void install(void) {
-        cmd("cp ./gf2 /usr/local/bin/");
+        cmd("cp ./gf2 " FORGE_PREFERRED_INSTALL_PREFIX "/bin/");
 }
 void uninstall(void) {
-        cmd("rm /usr/local/bin/gf2");
+        cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/gf2");
 }
 
 FORGE_GLOBAL pkg package = {
