@@ -40,14 +40,22 @@ void uninstall(void) {
 		}
 	}
 
-	forge_str content = forge_str_create();
-	for (int i = 0; lines && lines[i]; ++i) {
-		if (i == l1 || i == l2) continue;
-		forge_str_concat(&content, lines[i]);
-		forge_str_append(&content, '\n');
-	}
-
-	forge_io_write_file(forge_str_to_cstr(&bashrc), forge_str_to_cstr(&content));
+        if (l1 != -1 && l2 != -1) {
+                forge_str content = forge_str_create();
+                for (int i = 0; lines && lines[i]; ++i) {
+                        if (i == l1 || i == l2) continue;
+                        forge_str_concat(&content, lines[i]);
+                        forge_str_append(&content, '\n');
+                }
+                forge_io_write_file(forge_str_to_cstr(&bashrc), forge_str_to_cstr(&content));
+                forge_str_destroy(&content);
+        } else {
+                printf("*** NOTE: earlmgr adds two environment variables:\n");
+                printf("              * EARLMGR_INSTALL_LOC\n");
+                printf("              * EARLMGR_IMPORT_LOC\n");
+                printf("          but these were not found in %s\n", forge_str_to_cstr(&bashrc));
+                printf("          These need to be manually removed.\n");
+        }
 
 	for (int i = 0; lines && lines[i]; ++i) free(lines[i]);
 	if (lines) free(lines);
