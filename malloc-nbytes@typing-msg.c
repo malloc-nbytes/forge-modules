@@ -10,13 +10,13 @@ char *download(void) {
         return git_clone("malloc-nbytes", "typing-msg");
 }
 void build(void) {
-	cmd("./build.sh");
+        cmd("./build.sh");
 }
 void install(void) {
-	cmd("cp ./typing-msg /usr/local/bin");
+        cmd("cp ./typing-msg /usr/local/bin");
 }
 void uninstall(void) {
-	cmd("rm /usr/local/bin/typing-msg");
+        cmd("rm /usr/local/bin/typing-msg");
 }
 
 FORGE_GLOBAL pkg package = {
@@ -29,4 +29,5 @@ FORGE_GLOBAL pkg package = {
         .install = install,
         .uninstall = uninstall,
         .update = forge_pkg_git_update, // or define your own if not using git
+        .get_changes = forge_pkg_git_pull,
 };

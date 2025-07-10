@@ -29,4 +29,5 @@ FORGE_GLOBAL pkg package = {
         .install = install,
         .uninstall = uninstall,
         .update = forge_pkg_git_update, // or define your own if not using git
+        .get_changes = forge_pkg_git_pull,
 };

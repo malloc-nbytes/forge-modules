@@ -10,13 +10,13 @@ char *download(void) {
         return git_clone("malloc-nbytes", "stt");
 }
 void build(void) {
-	cmd("cargo build --release");
+        cmd("cargo build --release");
 }
 void install(void) {
-	cmd("cp ./target/release/stt " FORGE_PREFERRED_INSTALL_PREFIX "/bin");
+        cmd("cp ./target/release/stt " FORGE_PREFERRED_INSTALL_PREFIX "/bin");
 }
 void uninstall(void) {
-	cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/stt");
+        cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/stt");
 }
 
 FORGE_GLOBAL pkg package = {
@@ -29,4 +29,5 @@ FORGE_GLOBAL pkg package = {
         .install = install,
         .uninstall = uninstall,
         .update = forge_pkg_git_update, // or define your own if not using git
+        .get_changes = forge_pkg_git_pull,
 };
