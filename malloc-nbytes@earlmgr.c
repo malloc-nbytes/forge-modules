@@ -5,6 +5,8 @@
 
 char *deps[] = {"malloc-nbytes@earl", NULL}; // Must be NULL terminated
 
+void uninstall(void);
+
 char *getname(void) { return "malloc-nbytes@earlmgr"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Manager application for EARL"; }
@@ -25,11 +27,8 @@ void install(void) {
                         break;
                 }
         }
-        if (found) {
-                cmd_as("earlmgr -- update remote", user);
-        } else {
-                cmd_as("earl ./earlmgr.rl", user);
-        }
+        if (found) { uninstall(); }
+        cmd_as("earl ./earlmgr.rl", user);
 }
 void uninstall(void) {
         cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/earlmgr");
