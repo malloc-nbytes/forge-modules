@@ -1,17 +1,15 @@
 #!/bin/bash
 
-set -xe
+set -e
 
 for file in *.c; do
-    # Check if any .c files exist
     if [[ -f "$file" ]]; then
-        echo "Compiling $file..."
-
+        echo "gcc -shared -fPIC -o \"${file%.c}.so\" \"$file\""
         gcc -shared -fPIC -o "${file%.c}.so" "$file"
 
-        # Check if compilation was successful
-        if [[ $? -eq 0 ]]; then echo "Successfully compiled $file to ${file%.c}.so"
-        else echo "Failed to compile $file"
+        if ! [[ $? -eq 0 ]]; then 
+                echo "Failed to compile $file"
+                exit 1
         fi
     else
         echo "No .c files found in the current directory"
