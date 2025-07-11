@@ -8,9 +8,9 @@
 
 char *deps[] = {NULL}; // Must be NULL terminated
 
-char *getname(void) { return "malloc-nbytes@minimal-i3conf"; }
+char *getname(void) { return "malloc-nbytes@i3conf"; }
 char *getver(void) { return "1.0.0"; }
-char *getdesc(void) { return "A (almost) stock i3 config by malloc-nbytes"; }
+char *getdesc(void) { return "A (almost) stock i3 config"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("malloc-nbytes", "i3-config");
