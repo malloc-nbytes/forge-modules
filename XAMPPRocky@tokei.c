@@ -7,7 +7,7 @@ char *getver(void)   { return "1.0.0"; }
 char *getdesc(void)  { return "Count your code, quickly"; }
 char *download(void) { return git_clone("XAMPPRocky", "tokei"); }
 void build(void)     { cmd("cargo build --release"); }
-void install(void)   { cmd("cp ./target/release/tokei" FORGE_PREFERRED_INSTALL_PREFIX "/bin/"); }
+void install(void)   { cmd("cp ./target/release/tokei " FORGE_PREFERRED_INSTALL_PREFIX "/bin/"); }
 void uninstall(void) { cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/tokei"); }
 
 FORGE_GLOBAL pkg package = {
