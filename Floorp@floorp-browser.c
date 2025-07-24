@@ -30,8 +30,7 @@ char *getver(void) { return "12.0.16"; }
 char *getdesc(void) { return "A browser based off of Firefox"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
-        cmd("wget -O floorp-zipped.tar.xz https://github.com/Floorp-Projects/Floorp/releases/download/v12.0.16/floorp-linux-amd64.tar.xz");
-        printf("Unzipping (tar)\n");
+        cmd("wget https://github.com/Floorp-Projects/Floorp/releases/download/v12.0.16/floorp-linux-amd64.tar.xz");
         cmd("tar -vxf ./floorp-linux-amd64.tar.xz");
         cmd("rm floorp-linux-amd64.tar.xz");
         return "floorp";
