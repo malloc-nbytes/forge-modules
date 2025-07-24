@@ -6,7 +6,7 @@
 char *deps[] = {NULL}; // Must be NULL terminated
 
 static const char *desktop = "[Desktop Entry]\n"
-        "Version=1.0\n"
+        "Version=12.0\n"
         "Name=Floorp\n"
         "GenericName=Web Browser\n"
         "Keywords=Internet;WWW;Browser;Web;Explorer;Floorp\n"
@@ -26,7 +26,7 @@ static const char *desktop = "[Desktop Entry]\n"
         "Exec=/opt/floorp/floorp -private-window";
 
 char *getname(void) { return "Floorp@floorp-browser"; }
-char *getver(void) { return "11.28.0"; }
+char *getver(void) { return "12.0.16"; }
 char *getdesc(void) { return "A browser based off of Firefox"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
