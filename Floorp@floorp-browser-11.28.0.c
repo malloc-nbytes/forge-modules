@@ -33,7 +33,7 @@ char *download(void) {
         cmd("wget -O floorp-zipped.tar.bz2 https://github.com/Floorp-Projects/Floorp/releases/download/v11.28.0/floorp-11.28.0.linux-x86_64.tar.bz2");
         printf("Unzipping (bz2)\n");
         cmd("bzip2 -vd ./floorp-zipped.tar.bz2");
-        cmd("mkdirp floorp-11.28.0");
+        mkdirp("floorp-11.28.0");
         printf("Unzipping (tar)\n");
         cmd("tar -vxf ./floorp-zipped.tar -C floorp-11.28.0");
         cmd("rm floorp-zipped.tar");
