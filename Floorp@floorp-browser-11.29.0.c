@@ -26,13 +26,13 @@ static const char *desktop = "[Desktop Entry]\n"
         "Exec=/opt/floorp/floorp -private-window";
 
 char *getname(void) { return "Floorp@floorp-browser-11.29.0"; }
-char *getver(void) { return "11.28.0"; }
+char *getver(void) { return "11.29.0"; }
 char *getdesc(void) { return "A browser based off of Firefox"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         cmd("wget -O floorp-zipped.tar.bz2 https://github.com/Floorp-Projects/Floorp/releases/download/v11.28.0/floorp-11.28.0.linux-x86_64.tar.bz2");
         mkdirp("floorp-11.29.0");
-        cmd("tar -vxf ./floorp-zipped.tar -C floorp-11.29.0");
+        cmd("tar -vxf ./floorp-zipped.tar.bz2 -C floorp-11.29.0");
         cmd("rm floorp-zipped.tar.bz2");
         return "floorp-11.29.0";
 }
