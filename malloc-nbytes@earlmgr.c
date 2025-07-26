@@ -16,6 +16,8 @@ char *download(void) {
 }
 void build(void) {}
 void install(void) {
+        printf(BOLD YELLOW "* NOTE:" RESET " An error may pop up, just ignore it\n\n");
+
         cd("src");
         char *user = get_prev_user();
 
@@ -28,7 +30,17 @@ void install(void) {
                 }
         }
         if (found) { uninstall(); }
-        cmd_as("earl ./earlmgr.rl", user);
+        //cmd_as("echo -e \"y\ny\" | earl ./earlmgr.rl", user);
+        int choice = forge_chooser_yesno("This program wants to modify the .bashrc, is this ok?", "recommended", 2);
+        if (choice < 0) {
+                printf("something went wrong, aborting...\n");
+                return;
+        }
+        if (!choice) {
+                cmd_as("sh -c \"echo -e 'n\nn' | earl ./earlmgr.rl\"", user);
+        } else {
+                cmd_as("sh -c \"echo -e 'y\ny' | earl ./earlmgr.rl\"", user);
+        }
 }
 void uninstall(void) {
         cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/earlmgr");
