@@ -17,8 +17,8 @@ void install(void) {
 
         for (size_t i = 0; files[i]; ++i) {
                 if (!strcmp(forge_io_file_ext(files[i]), "rl")) {
-                        char *cmd_str = forge_str_builder("cp ", files[i], " ", install_path, NULL);
-                        char *chmod_str = forge_str_builder("chmod +x ", install_path, "/", files[i], NULL);
+                        char *cmd_str = forge_cstr_builder("cp ", files[i], " ", install_path, NULL);
+                        char *chmod_str = forge_cstr_builder("chmod +x ", install_path, "/", files[i], NULL);
                         cmd(cmd_str);
                         cmd(chmod_str);
                         free(cmd_str);
@@ -35,7 +35,7 @@ void uninstall(void) {
 
         for (size_t i = 0; files[i]; ++i) {
                 if (!strcmp(forge_io_file_ext(files[i]), "rl")) {
-                        char *cmd_str = forge_str_builder("rm ", install_path, "/", files[i], NULL);
+                        char *cmd_str = forge_cstr_builder("rm ", install_path, "/", files[i], NULL);
                         cmd(cmd_str);
                         free(cmd_str);
                 }
