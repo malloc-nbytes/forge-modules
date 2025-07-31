@@ -7,9 +7,11 @@ char *download(void) {
         return git_clone("malloc-nbytes", "vile");
 }
 void build(void) {
+        cd("src");
         cmd("/bin/sh build.sh");
 }
 void install(void) {
+        cd("src");
         cmd("cp vile " FORGE_PREFERRED_INSTALL_PREFIX "/bin");
 }
 void uninstall(void) {
