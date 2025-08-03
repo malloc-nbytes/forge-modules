@@ -38,7 +38,8 @@ char *download(void) {
 }
 void build(void) {}
 void install(void) {
-        cd("floorp-11.29.0/floorp");
+        //cd("floorp-11.29.0/floorp");
+        cd("floorp");
         mkdirp("/opt/floorp");
         cmd("cp -r ./* /opt/floorp");
         cmd("chmod -R 755 /opt/floorp");
