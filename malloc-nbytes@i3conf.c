@@ -15,8 +15,8 @@ char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("malloc-nbytes", "i3-config");
 }
-void build(void) {}
-void install(void) {
+int build(void) { return 1; }
+int install(void) {
         char *user = env("SUDO_USER");
         forge_str config_fp = forge_str_from("/home/");
         forge_str_concat(&config_fp, user);
@@ -37,8 +37,10 @@ void install(void) {
 
         forge_str_destroy(&config_fp);
         forge_str_destroy(&i3config);
+
+        return 1;
 }
-void uninstall(void) {}
+int uninstall(void) { return 1; }
 
 FORGE_GLOBAL pkg package = {
         .name = getname,

@@ -34,8 +34,8 @@ char *download(void) {
         cmd("rm zen.linux-x86_64.tar.xz");
         return "zen";
 }
-void build(void) {}
-void install(void) {
+int build(void) { return 1; }
+int install(void) {
         mkdirp("/opt/zen");
         cmd("cp -r ./* /opt/zen");
         cmd("chmod -R 755 /opt/zen");
@@ -46,12 +46,12 @@ void install(void) {
         mkdirp("/usr/share/applications/");
         forge_io_create_file("/usr/share/applications/zen.desktop", 1);
         forge_io_write_file("/usr/share/applications/zen.desktop", desktop);
-        cmd("chmod 644 /usr/share/applications/zen.desktop");
+        return cmd("chmod 644 /usr/share/applications/zen.desktop");
 }
-void uninstall(void) {
+int uninstall(void) {
         cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/zen");
         cmd("rm -r /opt/zen");
-        cmd("rm /usr/share/applications/zen.desktop");
+        return cmd("rm /usr/share/applications/zen.desktop");
 }
 
 FORGE_GLOBAL pkg package = {

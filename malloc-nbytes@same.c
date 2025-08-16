@@ -6,20 +6,20 @@ char *getdesc(void) { return "Check for identical files"; }
 char *download(void) {
         return git_clone("malloc-nbytes", "same");
 }
-void build(void) {
+int build(void) {
         cmd("autoreconf --install");
         mkdirp("build");
         cd("build");
         configure("../", NULL);
-        make(NULL);
+        return make(NULL);
 }
-void install(void) {
+int install(void) {
         cd("build");
-        make("install");
+        return make("install");
 }
-void uninstall(void) {
+int uninstall(void) {
         cd("build");
-        make("uninstall");
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

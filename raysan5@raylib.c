@@ -10,20 +10,20 @@ char *download(void) {
         cmd("git clone https://github.com/raysan5/raylib.git --depth=1");
         return "raylib";
 }
-void build(void) {
+int build(void) {
         mkdirp("build");
         cd("build");
         cmd("cmake ..");
-        make(NULL);
+        return make(NULL);
 }
-void install(void) {
+int install(void) {
         cd("build");
         make("install");
-        cmd("ldconfig");
+        return cmd("ldconfig");
 }
-void uninstall(void) {
+int uninstall(void) {
         cd("build");
-        make("uninstall");
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

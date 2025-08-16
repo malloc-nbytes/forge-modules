@@ -8,16 +8,16 @@ char *download(void) {
         cmd("git clone https://www.github.com/malloc-nbytes/AnimX.git/");
         return "AnimX";
 }
-void build(void) {
+int build(void) {
         cmd("autoreconf --install");
         configure("./", NULL);
-        make(NULL);
+        return make(NULL);
 }
-void install(void) {
-        make("install");
+int install(void) {
+        return make("install");
 }
-void uninstall(void) {
-        make("uninstall");
+int uninstall(void) {
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

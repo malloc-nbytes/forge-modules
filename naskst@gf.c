@@ -10,14 +10,14 @@ char *download(void) {
         cmd("git clone https://github.com/nakst/gf.git");
         return "gf";
 }
-void build(void) {
-        cmd("./build.sh");
+int build(void) {
+        return cmd("./build.sh");
 }
-void install(void) {
-        cmd("cp ./gf2 " FORGE_PREFERRED_INSTALL_PREFIX "/bin/");
+int install(void) {
+        return cmd("cp ./gf2 " FORGE_PREFERRED_INSTALL_PREFIX "/bin/");
 }
-void uninstall(void) {
-        cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/gf2");
+int uninstall(void) {
+        return cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/gf2");
 }
 
 FORGE_GLOBAL pkg package = {

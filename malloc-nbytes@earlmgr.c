@@ -5,7 +5,7 @@
 
 char *deps[] = {"malloc-nbytes@earl", NULL}; // Must be NULL terminated
 
-void uninstall(void);
+int uninstall(void);
 
 char *getname(void) { return "malloc-nbytes@earlmgr"; }
 char *getver(void) { return "1.0.0"; }
@@ -14,8 +14,8 @@ char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("malloc-nbytes", "earlmgr");
 }
-void build(void) {}
-void install(void) {
+int build(void) { return 1; }
+int install(void) {
         printf(BOLD YELLOW "* NOTE:" RESET " An error may pop up, just ignore it\n\n");
 
         cd("src");
@@ -34,15 +34,17 @@ void install(void) {
         int choice = forge_chooser_yesno("This program wants to modify the .bashrc, is this ok?", "recommended", 2);
         if (choice < 0) {
                 printf("something went wrong, aborting...\n");
-                return;
+                return 0;
         }
         if (!choice) {
                 cmd_as("sh -c \"echo -e 'n\nn' | earl ./earlmgr.rl\"", user);
         } else {
                 cmd_as("sh -c \"echo -e 'y\ny' | earl ./earlmgr.rl\"", user);
         }
+
+        return 1;
 }
-void uninstall(void) {
+int uninstall(void) {
         cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/earlmgr");
         cmd("rm -r " FORGE_PREFERRED_INSTALL_PREFIX "/include/EARL/mgr");
 
@@ -84,6 +86,8 @@ void uninstall(void) {
         for (int i = 0; lines && lines[i]; ++i) free(lines[i]);
         if (lines) free(lines);
         forge_str_destroy(&bashrc);
+
+        return 1;
 }
 
 FORGE_GLOBAL pkg package = {

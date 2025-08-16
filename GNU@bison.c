@@ -13,15 +13,15 @@ char *download(void) {
         cmd("tar -vxf ./bison-" BISON_VERSION ".tar.xz");
         return "bison-" BISON_VERSION;
 }
-void build(void) {
+int build(void) {
         configure("./", NULL);
-        make(NULL);
+        return make(NULL);
 }
-void install(void) {
-        make("install");
+int install(void) {
+        return make("install");
 }
-void uninstall(void) {
-        make("uninstall");
+int uninstall(void) {
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

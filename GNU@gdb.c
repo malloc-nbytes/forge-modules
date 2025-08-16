@@ -14,7 +14,7 @@ char *download(void) {
         return "binutils-gdb";
         cmd("git clone https://sourceware.org/git/binutils-gdb.git --depth=1");
 }
-void build(void) {
+int build(void) {
         mkdirp("build");
         cd("build");
         cmd("../configure \
@@ -30,17 +30,17 @@ void build(void) {
   --enable-targets=host-only \
   --prefix=/usr/local");
         cmd("../configure");
-        make(NULL);
+        return make(NULL);
 }
-void install(void) {
+int install(void) {
         printf("%s is unimplemented\n", getname());
-        return;
-        make("install");
+        return 0;
+        return make("install");
 }
-void uninstall(void) {
+int uninstall(void) {
         printf("%s is unimplemented\n", getname());
-        return;
-        make("uninstall");
+        return 0;
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

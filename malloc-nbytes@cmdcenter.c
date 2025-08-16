@@ -6,16 +6,16 @@ char *getdesc(void) { return "A centeral place for my scripts in 1 file"; }
 char *download(void) {
         return git_clone("malloc-nbytes", "cmdcenter");
 }
-void build(void) {
+int build(void) {
         cd("src");
-        cmd("/bin/sh build.sh");
+        return cmd("/bin/sh build.sh");
 }
-void install(void) {
+int install(void) {
         cd("src");
-        cmd("cp ./cmdcenter " FORGE_PREFERRED_INSTALL_PREFIX "/bin/");
+        return cmd("cp ./cmdcenter " FORGE_PREFERRED_INSTALL_PREFIX "/bin/");
 }
-void uninstall(void) {
-        cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/cmdcenter");
+int uninstall(void) {
+        return cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/cmdcenter");
 }
 
 FORGE_GLOBAL pkg package = {

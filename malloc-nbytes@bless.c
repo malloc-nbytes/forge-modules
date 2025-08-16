@@ -7,19 +7,19 @@ char *download(void) {
         cmd("git clone https://www.github.com/malloc-nbytes/bless.git/");
         return "bless";
 }
-void build(void) {
+int build(void) {
         mkdirp("build");
         cd("build");
         cmd("cmake -S .. -B .");
-        make(NULL);
+        return make(NULL);
 }
-void install(void) {
+int install(void) {
         cd("build");
-        make("install");
+        return make("install");
 }
-void uninstall(void) {
+int uninstall(void) {
         cd("build");
-        make("uninstall");
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

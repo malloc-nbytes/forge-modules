@@ -10,20 +10,17 @@ char *download(void) {
         cmd("git clone https://www.github.com/malloc-nbytes/gitcheck.git/");
         return "gitcheck";
 }
-void build(void) {
+int build(void) {
         cd("src");
-        //cmd("make");
-        make(NULL);
+        return make(NULL);
 }
-void install(void) {
+int install(void) {
         cd("src");
-        //cmd("make install");
-        make("install");
+        return make("install");
 }
-void uninstall(void) {
-        cmd("rm /usr/local/bin/gitcheck");
+int uninstall(void) {
+        return cmd("rm /usr/local/bin/gitcheck");
 }
-int update(void) { return 0; }
 
 FORGE_GLOBAL pkg package = {
         .name = getname,

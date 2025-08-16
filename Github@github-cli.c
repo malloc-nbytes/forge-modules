@@ -12,12 +12,14 @@ char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("cli", "cli");
 }
-void build(void) {}
-void install(void) {
+int build(void) { return 1; }
+int install(void) {
         cmd("make install prefix=/usr");
+        return 1;
 }
-void uninstall(void) {
+int uninstall(void) {
         cmd("make uninstall");
+        return 1;
 }
 
 FORGE_GLOBAL pkg package = {

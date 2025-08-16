@@ -9,14 +9,14 @@ char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("malloc-nbytes", "particles");
 }
-void build(void) {
-        cmd("./build.sh");
+int build(void) {
+        return cmd("./build.sh");
 }
-void install(void) {
-        cmd("cp ./particles /usr/local/bin");
+int install(void) {
+        return cmd("cp ./particles /usr/local/bin");
 }
-void uninstall(void) {
-        cmd("rm /usr/local/bin/particles");
+int uninstall(void) {
+        return cmd("rm /usr/local/bin/particles");
 }
 
 FORGE_GLOBAL pkg package = {

@@ -10,12 +10,12 @@ char *download(void) {
         cmd("git clone https://github.com/malloc-nbytes/far.git");
         return "far";
 }
-void build(void) {}
-void install(void) {
-        cmd("./install.sh");
+int build(void) { return 1; }
+int install(void) {
+        return cmd("./install.sh");
 }
-void uninstall(void) {
-        cmd("rm /usr/local/bin/far.py");
+int uninstall(void) {
+        return cmd("rm /usr/local/bin/far.py");
 }
 
 FORGE_GLOBAL pkg package = {

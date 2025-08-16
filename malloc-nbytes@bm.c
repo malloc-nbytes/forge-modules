@@ -10,19 +10,19 @@ char *download(void) {
         cmd("git clone https://www.github.com/malloc-nbytes/bm.git/");
         return "bm";
 }
-void build(void) {
+int build(void) {
         cmd("mkdir build");
         cd("build");
         cmd("cmake -S .. -B .");
-        cmd("make");
+        return cmd("make");
 }
-void install(void) {
+int install(void) {
         cd("build");
-        cmd("make install");
+        return cmd("make install");
 }
-void uninstall(void) {
+int uninstall(void) {
         cd("build");
-        cmd("make uninstall");
+        return cmd("make uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

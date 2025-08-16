@@ -6,14 +6,14 @@ char *getdesc(void) { return "A qemu wrapper for managing VMs"; }
 char *download(void) {
         return git_clone("malloc-nbytes", "qwr");
 }
-void build(void) {
-        cmd("/bin/sh build.sh");
+int build(void) {
+        return cmd("/bin/sh build.sh");
 }
-void install(void) {
-        cmd("cp qwr " FORGE_PREFERRED_INSTALL_PREFIX "/bin");
+int install(void) {
+        return cmd("cp qwr " FORGE_PREFERRED_INSTALL_PREFIX "/bin");
 }
-void uninstall(void) {
-        cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/qwr");
+int uninstall(void) {
+        return cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/qwr");
 }
 
 FORGE_GLOBAL pkg package = {

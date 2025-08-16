@@ -12,7 +12,7 @@ char *download(void) {
         cmd("git clone https://github.com/Perl/perl5.git perl --depth=1");
         return "perl";
 }
-void build(void) {
+int build(void) {
         cmd("sh Configure -des                            \
              -D prefix=/usr                               \
              -D vendorprefix=/usr                         \
@@ -23,13 +23,13 @@ void build(void) {
              -D sitearch=/usr/lib/perl5/5.40/site_perl    \
              -D vendorlib=/usr/lib/perl5/5.40/vendor_perl \
              -D vendorarch=/usr/lib/perl5/5.40/vendor_perl");
-        make(NULL);
+        return make(NULL);
 }
-void install(void) {
-        make("install");
+int install(void) {
+        return make("install");
 }
-void uninstall(void) {
-        make("uninstall");
+int uninstall(void) {
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

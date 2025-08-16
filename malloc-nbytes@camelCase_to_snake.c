@@ -10,16 +10,16 @@ char *download(void) {
         cmd("git clone https://github.com/malloc-nbytes/camelCase_to_snake.git");
         return "camelCase_to_snake";
 }
-void build(void) {
+int build(void) {
         cd("src");
-        cmd("./build.sh");
+        return cmd("./build.sh");
 }
-void install(void) {
+int install(void) {
         cd("src");
-        cmd("./install.sh");
+        return cmd("./install.sh");
 }
-void uninstall(void) {
-        cmd("rm /usr/local/bin/ccts");
+int uninstall(void) {
+        return cmd("rm /usr/local/bin/ccts");
 }
 
 FORGE_GLOBAL pkg package = {

@@ -7,20 +7,20 @@ char *download(void) {
         cmd("git clone https://www.github.com/malloc-nbytes/earl.git/");
         return "earl";
 }
-void build(void) {
+int build(void) {
         cmd("mkdir build");
         cd("build");
         cmd("cmake -S .. -B .");
-        make(NULL);
+        return make(NULL);
 }
-void install(void) {
+int install(void) {
         cd("build");
-        make("install");
+        return make("install");
 }
-void uninstall(void) {
+int uninstall(void) {
         cd("build");
         make("uninstall");
-        cmd("rm -r /usr/local/include/EARL");
+        return cmd("rm -r /usr/local/include/EARL");
 }
 
 FORGE_GLOBAL pkg package = {

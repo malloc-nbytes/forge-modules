@@ -7,20 +7,20 @@ char *download(void) {
         cmd("git clone https://www.github.com/malloc-nbytes/ampire.git/ --recursive");
         return "ampire";
 }
-void build(void) {
+int build(void) {
         mkdirp("build");
         cd("build");
         cmd("cmake -S .. -B .");
-        make(NULL);
+        return make(NULL);
 }
-void install(void) {
+int install(void) {
         cd("build");
         make("install");
-        cmd("ldconfig");
+        return cmd("ldconfig");
 }
-void uninstall(void) {
+int uninstall(void) {
         cd("build");
-        make("uninstall");
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

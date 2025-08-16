@@ -13,16 +13,16 @@ char *download(void) {
         cmd("git clone git://git.sv.gnu.org/autoconf");
         return "autoconf";
 }
-void build(void) {
+int build(void) {
         configure("./", NULL);
         make(NULL);
-        make("check");
+        return make("check");
 }
-void install(void) {
-        make("install");
+int install(void) {
+        return make("install");
 }
-void uninstall(void) {
-        make("uninstall");
+int uninstall(void) {
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

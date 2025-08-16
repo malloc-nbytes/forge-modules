@@ -9,14 +9,14 @@ char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("malloc-nbytes", "typing-msg");
 }
-void build(void) {
-        cmd("./build.sh");
+int build(void) {
+        return cmd("./build.sh");
 }
-void install(void) {
-        cmd("cp ./typing-msg /usr/local/bin");
+int install(void) {
+        return cmd("cp ./typing-msg /usr/local/bin");
 }
-void uninstall(void) {
-        cmd("rm /usr/local/bin/typing-msg");
+int uninstall(void) {
+        return cmd("rm /usr/local/bin/typing-msg");
 }
 
 FORGE_GLOBAL pkg package = {

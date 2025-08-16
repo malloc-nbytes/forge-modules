@@ -22,16 +22,16 @@ char *download(void) {
         return git_clone("malloc-nbytes", "stt");
 }
 
-void build(void) {
-        cmd("cargo build --release");
+int build(void) {
+        return cmd("cargo build --release");
 }
 
-void install(void) {
-        cmd("cp ./target/release/stt " FORGE_PREFERRED_INSTALL_PREFIX "/bin");
+int install(void) {
+        return cmd("cp ./target/release/stt " FORGE_PREFERRED_INSTALL_PREFIX "/bin");
 }
 
-void uninstall(void) {
-        cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/stt");
+int uninstall(void) {
+        return cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/stt");
 }
 
 FORGE_GLOBAL pkg package = {

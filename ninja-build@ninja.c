@@ -9,15 +9,15 @@ char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("ninja-build", "ninja");
 }
-void build(void) {
+int build(void) {
         cmd("cmake -Bbuild-cmake -DBUILD_TESTING=OFF");
-        cmd("cmake --build build-cmake");
+        return cmd("cmake --build build-cmake");
 }
-void install(void) {
-        cmd("make install");
+int install(void) {
+        return cmd("make install");
 }
-void uninstall(void) {
-        cmd("make uninstall");
+int uninstall(void) {
+        return cmd("make uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

@@ -9,14 +9,14 @@ char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("pop-os", "system76-power");
 }
-void build(void) {
-        cmd("make");
+int build(void) {
+        return cmd("make");
 }
-void install(void) {
-        cmd("make install");
+int install(void) {
+        return cmd("make install");
 }
-void uninstall(void) {
-        cmd("make uninstall");
+int uninstall(void) {
+        return cmd("make uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

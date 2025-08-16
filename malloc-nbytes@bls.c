@@ -6,17 +6,17 @@ char *getdesc(void) { return "An alternative to `ls`"; }
 char *download(void) {
         return git_clone("malloc-nbytes", "bls");
 }
-void build(void) {
+int build(void) {
         cd("src/build");
-        cmd("make");
+        return cmd("make");
 }
-void install(void) {
+int install(void) {
         cd("src/build");
         cmd("make install");
-        cmd("make clean");
+        return cmd("make clean");
 }
-void uninstall(void) {
-        cmd("rm /usr/local/bin/bls");
+int uninstall(void) {
+        return cmd("rm /usr/local/bin/bls");
 }
 
 FORGE_GLOBAL pkg package = {

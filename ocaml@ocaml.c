@@ -9,15 +9,15 @@ char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("ocaml", "ocaml");
 }
-void build(void) {
+int build(void) {
         cmd("OBJECT_MODE=64 /bin/sh configure --build=x86_64-pc-linux-gnu --prefix=" FORGE_PREFERRED_INSTALL_PREFIX " --libdir=" FORGE_PREFERRED_LIB_PREFIX);
-        cmd("OBJECT_MODE=64 make -j" FORGE_PREFERRED_MAKEFILE_JFLAGS);
+        return cmd("OBJECT_MODE=64 make -j" FORGE_PREFERRED_MAKEFILE_JFLAGS);
 }
-void install(void) {
-        make("install");
+int install(void) {
+        return make("install");
 }
-void uninstall(void) {
-        make("uninstall");
+int uninstall(void) {
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {

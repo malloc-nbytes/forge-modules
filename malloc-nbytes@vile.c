@@ -6,16 +6,16 @@ char *getdesc(void) { return "Manipulate C files easily"; }
 char *download(void) {
         return git_clone("malloc-nbytes", "vile");
 }
-void build(void) {
+int build(void) {
         cd("src");
-        cmd("/bin/sh build.sh");
+        return cmd("/bin/sh build.sh");
 }
-void install(void) {
+int install(void) {
         cd("src");
-        cmd("cp vile " FORGE_PREFERRED_INSTALL_PREFIX "/bin");
+        return cmd("cp vile " FORGE_PREFERRED_INSTALL_PREFIX "/bin");
 }
-void uninstall(void) {
-        cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/vile");
+int uninstall(void) {
+        return cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/vile");
 }
 
 FORGE_GLOBAL pkg package = {

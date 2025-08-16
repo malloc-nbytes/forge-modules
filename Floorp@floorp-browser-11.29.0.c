@@ -36,8 +36,8 @@ char *download(void) {
         cmd("rm floorp-zipped.tar.bz2");
         return "floorp-11.29.0";
 }
-void build(void) {}
-void install(void) {
+int build(void) { return 1; }
+int install(void) {
         //cd("floorp-11.29.0/floorp");
         cd("floorp");
         mkdirp("/opt/floorp");
@@ -51,11 +51,14 @@ void install(void) {
         forge_io_create_file("/usr/share/applications/floorp.desktop", 1);
         forge_io_write_file("/usr/share/applications/floorp.desktop", desktop);
         cmd("chmod 644 /usr/share/applications/floorp.desktop");
+
+        return 1;
 }
-void uninstall(void) {
+int uninstall(void) {
         cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp");
         cmd("rm -r /opt/floorp");
         cmd("rm /usr/share/applications/floorp.desktop");
+        return 1;
 }
 
 FORGE_GLOBAL pkg package = {

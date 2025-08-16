@@ -7,15 +7,15 @@ char *download(void) {
         cmd("git clone https://gitlab.kitware.com/cmake/cmake.git");
         return "cmake";
 }
-void build(void) {
+int build(void) {
         cmd("/bin/sh bootstrap --parallel=" FORGE_PREFERRED_MAKEFILE_JFLAGS);
-        make(NULL);
+        return make(NULL);
 }
-void install(void) {
-        make("install");
+int install(void) {
+        return make("install");
 }
-void uninstall(void) {
-        make("uninstall");
+int uninstall(void) {
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {
