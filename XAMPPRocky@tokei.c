@@ -5,6 +5,7 @@ char *deps[] = {/*rust*/NULL}; // Must be NULL terminated
 char *getname(void)  { return "XAMPPRocky@tokei"; }
 char *getver(void)   { return "1.0.0"; }
 char *getdesc(void)  { return "Count your code, quickly"; }
+char *getweb(void)   { return "https://www.github.com/XAMPPRocky/tokei.git/"; }
 char *download(void) { return git_clone("XAMPPRocky", "tokei"); }
 int build(void)      { return cmd("cargo build --release"); }
 int install(void)    { return cmd("cp ./target/release/tokei " FORGE_PREFERRED_INSTALL_PREFIX "/bin/"); }
@@ -14,6 +15,7 @@ FORGE_GLOBAL pkg package = {
         .name        = getname,
         .ver         = getver,
         .desc        = getdesc,
+        .web         = getweb,
         .deps        = NULL,
         .download    = download,
         .build       = build,

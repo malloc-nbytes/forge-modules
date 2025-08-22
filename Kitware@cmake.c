@@ -3,6 +3,7 @@
 char *getname(void) { return "Kitware@cmake"; }
 char *getver(void) { return "3.31.7"; }
 char *getdesc(void) { return "Software build system"; }
+char *getweb(void) { return "https://gitlab.kitware.com/cmake/cmake"; }
 char *download(void) {
         cmd("git clone https://gitlab.kitware.com/cmake/cmake.git");
         return "cmake";
@@ -22,6 +23,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

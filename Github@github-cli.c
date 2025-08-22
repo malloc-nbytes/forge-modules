@@ -7,7 +7,8 @@ char *deps[] = {/*"golang"*/NULL}; // Must be NULL terminated
 
 char *getname(void) { return "Github@github-cli"; }
 char *getver(void) { return "2.68.1"; }
-char *getdesc(void) { return "GitHub’s official command line tool "; }
+char *getdesc(void) { return "GitHub’s official command line tool"; }
+char *getweb(void) { return "https://github.com/cli/cli"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("cli", "cli");
@@ -26,6 +27,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

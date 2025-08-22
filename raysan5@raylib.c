@@ -5,6 +5,7 @@ char *deps[] = {NULL}; // Must be NULL terminated
 char *getname(void) { return "raysan5@raylib"; }
 char *getver(void) { return "5.5.0"; }
 char *getdesc(void) { return "A simple and easy-to-use library to enjoy videogames programming"; }
+char *getweb(void) { return "https://github.com/raysan5/raylib.git"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         cmd("git clone https://github.com/raysan5/raylib.git --depth=1");
@@ -30,6 +31,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

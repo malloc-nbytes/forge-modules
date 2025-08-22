@@ -11,6 +11,7 @@ char *deps[] = {NULL}; // Must be NULL terminated
 char *getname(void) { return "malloc-nbytes@i3conf"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "A (almost) stock i3 config"; }
+char *getweb(void) { return "https://www.github.com/malloc-nbytes/i3-config.git/"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("malloc-nbytes", "i3-config");
@@ -46,6 +47,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

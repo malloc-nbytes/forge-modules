@@ -4,7 +4,8 @@ char *deps[] = {"Kitware@cmake", NULL}; // Must be NULL terminated
 
 char *getname(void) { return "ninja-build@ninja"; }
 char *getver(void) { return "1.13.1"; }
-char *getdesc(void) { return "A small build system focused on speed "; }
+char *getdesc(void) { return "A small build system focused on speed"; }
+char *getweb(void) { return "https://www.github.com/ninja-build/ninja.git/"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("ninja-build", "ninja");
@@ -24,6 +25,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = getdeps,
         .download = download,
         .build = build,

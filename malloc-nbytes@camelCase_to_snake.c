@@ -5,6 +5,7 @@ char *deps[] = {NULL}; // Must be NULL terminated
 char *getname(void) { return "malloc-nbytes@camelCase_to_snake"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Kill those camels!"; }
+char *getweb(void) { return "https://github.com/malloc-nbytes/camelCase_to_snake.git"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         cmd("git clone https://github.com/malloc-nbytes/camelCase_to_snake.git");
@@ -26,6 +27,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

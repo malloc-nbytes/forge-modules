@@ -5,6 +5,7 @@ char *deps[] = {NULL}; // Must be NULL terminated
 char *getname(void) { return "naskst@gf"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "A GDB frontend for Linux"; }
+char *getweb(void) { return "https://github.com/nakst/gf.git"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         cmd("git clone https://github.com/nakst/gf.git");
@@ -24,6 +25,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

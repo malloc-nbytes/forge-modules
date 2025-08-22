@@ -29,6 +29,7 @@ char *getname(void) { return "Floorp@floorp-browser-11.29.0"; }
 char *getver(void) { return "11.29.0"; }
 char *getdesc(void) { return "A browser based off of Firefox"; }
 char **getdeps(void) { return deps; }
+char *getweb(void) { return "https://github.com/Floorp-Projects/Floorp/releases/"; }
 char *download(void) {
         cmd("wget -O floorp-zipped.tar.bz2 https://github.com/Floorp-Projects/Floorp/releases/download/v11.28.0/floorp-11.28.0.linux-x86_64.tar.bz2");
         mkdirp("floorp-11.29.0");
@@ -65,6 +66,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

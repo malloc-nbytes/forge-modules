@@ -3,6 +3,7 @@
 char *getname(void) { return "malloc-nbytes@cmdcenter"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "A centeral place for my scripts in 1 file"; }
+char *getweb(void) { return "https://www.github.com/malloc-nbytes/cmdcenter.git/"; }
 char *download(void) {
         return git_clone("malloc-nbytes", "cmdcenter");
 }
@@ -22,6 +23,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

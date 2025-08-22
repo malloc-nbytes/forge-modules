@@ -8,6 +8,7 @@ char *deps[] = {NULL}; // Must be NULL terminated
 char *getname(void) { return "GNU@gdb"; }
 char *getver(void) { return "16.2.0"; }
 char *getdesc(void) { return "The GNU Project Debugger"; }
+char *getweb(void) { return "https://sourceware.org/git/binutils-gdb.git"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         printf("%s is unimplemented\n", getname());
@@ -47,6 +48,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

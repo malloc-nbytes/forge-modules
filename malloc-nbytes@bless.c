@@ -3,6 +3,7 @@
 char *getname(void) { return "malloc-nbytes@bless"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Better `less`"; }
+char *getweb(void) { return "https://www.github.com/malloc-nbytes/bless.git/"; }
 char *download(void) {
         cmd("git clone https://www.github.com/malloc-nbytes/bless.git/");
         return "bless";
@@ -26,6 +27,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

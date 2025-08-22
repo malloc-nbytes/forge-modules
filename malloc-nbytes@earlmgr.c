@@ -10,6 +10,7 @@ int uninstall(void);
 char *getname(void) { return "malloc-nbytes@earlmgr"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Manager application for EARL"; }
+char *getweb(void) { return "https://www.github.com/malloc-nbytes/earlmgr.git/"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("malloc-nbytes", "earlmgr");
@@ -94,6 +95,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = getdeps,
         .download = download,
         .build = build,

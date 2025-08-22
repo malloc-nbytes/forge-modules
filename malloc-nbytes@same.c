@@ -3,6 +3,7 @@
 char *getname(void) { return "malloc-nbytes@same"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Check for identical files"; }
+char *getweb(void) { return "https://www.github.com/malloc-nbytes/same.git/"; }
 char *download(void) {
         return git_clone("malloc-nbytes", "same");
 }
@@ -26,6 +27,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

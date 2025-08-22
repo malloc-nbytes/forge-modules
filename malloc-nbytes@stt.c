@@ -14,6 +14,10 @@ char *getdesc(void) {
         return "Simple Time Tracker";
 }
 
+char *getweb(void) {
+        return "https://www.github.com/malloc-nbytes/stt.git/";
+}
+
 char **getdeps(void) {
         return deps;
 }
@@ -38,6 +42,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

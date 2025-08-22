@@ -3,6 +3,7 @@
 char *getname(void) { return "malloc-nbytes@xkillr"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "Kill processes"; }
+char *getweb(void) { return "https://www.github.com/malloc-nbytes/xkillr.git/"; }
 char *download(void) {
         git_clone("malloc-nbytes", "xkillr");
         return "xkillr";
@@ -27,6 +28,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

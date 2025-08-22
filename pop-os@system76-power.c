@@ -4,7 +4,8 @@ char *deps[] = {NULL}; // Must be NULL terminated
 
 char *getname(void) { return "pop-os@system76-power"; }
 char *getver(void) { return "1.2.4"; }
-char *getdesc(void) { return "Power profile management for Linux "; }
+char *getdesc(void) { return "Power profile management for Linux"; }
+char *getweb(void) { return "https://www.github.com/pop-os/system76-power.git/"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("pop-os", "system76-power");
@@ -23,6 +24,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

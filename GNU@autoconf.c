@@ -8,6 +8,7 @@ char *deps[] = {NULL}; // Must be NULL terminated
 char *getname(void) { return "GNU@autoconf"; }
 char *getver(void) { return "2.72.0"; }
 char *getdesc(void) { return "Extensible package of M4 macros"; }
+char *getweb(void) { return "https://savannah.gnu.org/git/?group=autoconf"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         cmd("git clone git://git.sv.gnu.org/autoconf");
@@ -29,6 +30,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

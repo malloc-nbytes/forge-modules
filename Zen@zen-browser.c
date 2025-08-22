@@ -27,6 +27,7 @@ static const char *desktop = "[Desktop Entry]\n"
 char *getname(void) { return "Zen@zen-browser"; }
 char *getver(void) { return "1.14.5b"; }
 char *getdesc(void) { return "A browser based off of Firefox"; }
+char *getweb(void) { return "https://github.com/zen-browser/desktop/releases/"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         cmd("curl -O -L https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.xz");
@@ -58,6 +59,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

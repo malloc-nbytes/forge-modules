@@ -3,6 +3,7 @@
 char *getname(void) { return "malloc-nbytes@earl"; }
 char *getver(void) { return "0.9.7"; }
 char *getdesc(void) { return "A scripting language to replace BASH"; }
+char *getweb(void) { return "https://www.github.com/malloc-nbytes/earl.git/"; }
 char *download(void) {
         cmd("git clone https://www.github.com/malloc-nbytes/earl.git/");
         return "earl";
@@ -27,6 +28,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

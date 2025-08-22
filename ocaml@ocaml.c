@@ -5,6 +5,7 @@ char *deps[] = {NULL}; // Must be NULL terminated
 char *getname(void) { return "ocaml@ocaml"; }
 char *getver(void) { return "4.14.2"; }
 char *getdesc(void) { return "The core OCaml system"; }
+char *getweb(void) { return "https://www.github.com/ocaml/ocaml.git/"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("ocaml", "ocaml");
@@ -24,6 +25,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

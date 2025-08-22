@@ -5,6 +5,7 @@ char *deps[] = {NULL}; // Must be NULL terminated
 char *getname(void) { return "malloc-nbytes@typing-msg"; }
 char *getver(void) { return "1.0.0"; }
 char *getdesc(void) { return "A small program to simulate typing a message"; }
+char *getweb(void) { return "https://www.github.com/malloc-nbytes/typing-msg.git/"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("malloc-nbytes", "typing-msg");
@@ -23,6 +24,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

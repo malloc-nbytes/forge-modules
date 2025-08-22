@@ -3,6 +3,7 @@
 char *getname(void) { return "malloc-nbytes@ampire"; }
 char *getver(void) { return "0.1.5"; }
 char *getdesc(void) { return "A music player in the terminal"; }
+char *getweb(void) { return "https://www.github.com/malloc-nbytes/ampire.git/"; }
 char *download(void) {
         cmd("git clone https://www.github.com/malloc-nbytes/ampire.git/ --recursive");
         return "ampire";
@@ -27,6 +28,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,

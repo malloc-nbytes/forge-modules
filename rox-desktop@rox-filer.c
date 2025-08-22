@@ -7,6 +7,7 @@ char *deps[] = {NULL}; // Must be NULL terminated
 char *getname(void) { return "rox-desktop@rox-filer"; }
 char *getver(void) { return "2.11.0"; }
 char *getdesc(void) { return "ROX file manager"; }
+char *getweb(void) { return "https://www.github.com/rox-desktop/rox-filer.git/"; }
 char **getdeps(void) { return deps; }
 char *download(void) {
         return git_clone("rox-desktop", "rox-filer");
@@ -38,6 +39,7 @@ FORGE_GLOBAL pkg package = {
         .name = getname,
         .ver = getver,
         .desc = getdesc,
+        .web = getweb,
         .deps = NULL,
         .download = download,
         .build = build,
