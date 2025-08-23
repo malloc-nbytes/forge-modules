@@ -35,7 +35,7 @@ char *getweb(void) { return "https://github.com/Floorp-Projects/Floorp/releases/
 char *download(void) {
         cmd("wget -O floorp-zipped.tar.xz https://github.com/Floorp-Projects/Floorp/releases/download/v12.1.2/floorp-linux-amd64.tar.xz");
         mkdirp("floorp-" VERSION);
-        cmd("tar -vxf ./floorp-zipped.tar.bz2 -C floorp-" VERSION);
+        cmd("tar -vxf ./floorp-zipped.tar.xz -C floorp-" VERSION);
         cmd("rm floorp-zipped.tar.xz");
         return "floorp-"  VERSION;
 }
