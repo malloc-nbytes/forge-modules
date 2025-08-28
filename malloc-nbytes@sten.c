@@ -6,6 +6,7 @@ char *getname(void)  { return "malloc-nbytes@sten"; }
 char *getver(void)   { return "WIP"; }
 char *getdesc(void)  { return "A WIP text editor"; }
 char *getweb(void)   { return "https://www.github.com/malloc-nbytes/sten.git/"; }
+char **getdeps(void)  { return deps; }
 char *download(void) { return git_clone("malloc-nbytes", "sten"); }
 
 int build(void)      { return cmd("earl build.rl"); }
@@ -17,7 +18,7 @@ FORGE_GLOBAL pkg package = {
         .ver = getver,
         .desc = getdesc,
         .web = getweb,
-        .deps = NULL,
+        .deps = getdeps,
         .download = download,
         .build = build,
         .install = install,
