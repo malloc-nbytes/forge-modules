@@ -3,28 +3,24 @@
 
 #include <forge/forge.h>
 
-char *deps[] = {NULL}; // Must be NULL terminated
-
 char *getname(void) { return "GNU@autoconf"; }
-char *getver(void) { return "2.72.0"; }
+char *getver(void)  { return "2.72.0"; }
 char *getdesc(void) { return "Extensible package of M4 macros"; }
-char *getweb(void) { return "https://savannah.gnu.org/git/?group=autoconf"; }
-char **getdeps(void) { return deps; }
+char *getweb(void)  { return "https://savannah.gnu.org/git/?group=autoconf"; }
+
 char *download(void) {
-        cmd("git clone git://git.sv.gnu.org/autoconf");
+        CMD("git clone git://git.sv.gnu.org/autoconf", return NULL);
         return "autoconf";
 }
+
 int build(void) {
-        configure("./", NULL);
-        make(NULL);
+        if (!configure("./", NULL)) return 0;
+        if (!make(NULL)) return 0;
         return make("check");
 }
-int install(void) {
-        return make("install");
-}
-int uninstall(void) {
-        return make("uninstall");
-}
+
+int install(void)   { return make("install"); }
+int uninstall(void) { return make("uninstall"); }
 
 FORGE_GLOBAL pkg package = {
         .name            = getname,

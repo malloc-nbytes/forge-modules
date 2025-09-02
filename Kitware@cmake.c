@@ -4,17 +4,21 @@ char *getname(void) { return "Kitware@cmake"; }
 char *getver(void) { return "3.31.7"; }
 char *getdesc(void) { return "Software build system"; }
 char *getweb(void) { return "https://gitlab.kitware.com/cmake/cmake"; }
+
 char *download(void) {
-        cmd("git clone https://gitlab.kitware.com/cmake/cmake.git");
+        CMD("git clone https://gitlab.kitware.com/cmake/cmake.git", return NULL);
         return "cmake";
 }
+
 int build(void) {
-        cmd("/bin/sh bootstrap --parallel=" FORGE_PREFERRED_MAKEFILE_JFLAGS);
+        CMD("/bin/sh bootstrap --parallel=" FORGE_PREFERRED_MAKEFILE_JFLAGS, return 0);
         return make(NULL);
 }
+
 int install(void) {
         return make("install");
 }
+
 int uninstall(void) {
         return make("uninstall");
 }

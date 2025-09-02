@@ -15,9 +15,11 @@ int build(void) {
         if (!configure("./", NULL)) return 0;
         return make(NULL);
 }
+
 int install(void) {
         return make("install");
 }
+
 int uninstall(void) {
         return make("uninstall");
 }

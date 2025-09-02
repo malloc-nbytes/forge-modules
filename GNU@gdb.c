@@ -3,18 +3,18 @@
 
 #include <forge/forge.h>
 
-char *deps[] = {NULL}; // Must be NULL terminated
-
 char *getname(void) { return "GNU@gdb"; }
-char *getver(void) { return "16.2.0"; }
+char *getver(void)  { return "16.2.0"; }
 char *getdesc(void) { return "The GNU Project Debugger"; }
-char *getweb(void) { return "https://sourceware.org/git/binutils-gdb.git"; }
-char **getdeps(void) { return deps; }
+char *getweb(void)  { return "https://sourceware.org/git/binutils-gdb.git"; }
+
 char *download(void) {
         printf("%s is unimplemented\n", getname());
-        return "binutils-gdb";
-        cmd("git clone https://sourceware.org/git/binutils-gdb.git --depth=1");
+        return NULL;
+        //return "binutils-gdb";
+        //cmd("git clone https://sourceware.org/git/binutils-gdb.git --depth=1");
 }
+
 int build(void) {
         mkdirp("build");
         cd("build");

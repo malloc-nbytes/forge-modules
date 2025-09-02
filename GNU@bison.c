@@ -2,25 +2,29 @@
 
 #define BISON_VERSION "3.8"
 
-char *deps[] = {NULL}; // Must be NULL terminated
-
 char *getname(void)  { return "GNU@bison"; }
 char *getver(void)   { return BISON_VERSION; }
 char *getdesc(void)  { return "General-purpose parser generator"; }
 char *getweb(void)   { return "http://ftp.gnu.org/gnu/bison/"; }
-char **getdeps(void) { return deps; }
+
 char *download(void) {
-        cmd("wget http://ftp.gnu.org/gnu/bisonww/bison-3.8.tar.xz");
-        cmd("tar -vxf ./bison-" BISON_VERSION ".tar.xz");
+        CMD("wget http://ftp.gnu.org/gnu/bisonww/bison-3.8.tar.xz", return 0);
+        CMD("tar -vxf ./bison-" BISON_VERSION ".tar.xz", {
+                cmd("rm ./bison-" BISON_VERSION ".tar.xz");
+                return NULL;
+        });
         return "bison-" BISON_VERSION;
 }
+
 int build(void) {
-        configure("./", NULL);
+        if (!configure("./", NULL)) return 0;
         return make(NULL);
 }
+
 int install(void) {
         return make("install");
 }
+
 int uninstall(void) {
         return make("uninstall");
 }
