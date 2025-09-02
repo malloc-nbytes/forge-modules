@@ -3,8 +3,6 @@
 
 #include <forge/forge.h>
 
-char *deps[] = {NULL}; // Must be NULL terminated
-
 static const char *desktop = "[Desktop Entry]\n"
         "Version=11.29\n"
         "Name=Floorp\n"
@@ -25,18 +23,25 @@ static const char *desktop = "[Desktop Entry]\n"
         "Name=Open a New Private Window\n"
         "Exec=/opt/floorp/floorp -private-window";
 
-char *getname(void) { return "Floorp@floorp-browser-11.29.0"; }
-char *getver(void) { return "11.29.0"; }
-char *getdesc(void) { return "A browser based off of Firefox"; }
-char **getdeps(void) { return deps; }
-char *getweb(void) { return "https://github.com/Floorp-Projects/Floorp/releases/"; }
+char *getname(void)  { return "Floorp@floorp-browser-11.29.0"; }
+char *getver(void)   { return "11.29.0"; }
+char *getdesc(void)  { return "A browser based off of Firefox"; }
+char *getweb(void)   { return "https://github.com/Floorp-Projects/Floorp/releases/"; }
+
 char *download(void) {
-        cmd("wget -O floorp-zipped.tar.bz2 https://github.com/Floorp-Projects/Floorp/releases/download/v11.28.0/floorp-11.28.0.linux-x86_64.tar.bz2");
+        CMD("wget -O floorp-zipped.tar.bz2 https://github.com/Floorp-Projects/Floorp/releases/download/v11.28.0/floorp-11.28.0.linux-x86_64.tar.bz2", {
+                forge_io_rm_dir("floorp-zipped.tar.bz2");
+                return NULL;
+        });
         mkdirp("floorp-11.29.0");
-        cmd("tar -vxf ./floorp-zipped.tar.bz2 -C floorp-11.29.0");
-        cmd("rm floorp-zipped.tar.bz2");
+        CMD("tar -vxf ./floorp-zipped.tar.bz2 -C floorp-11.29.0", {
+                forge_io_rm_dir("floorp-11.29.0");
+                return NULL;
+        });
+        CMD("rm floorp-zipped.tar.bz2", return NULL);
         return "floorp-11.29.0";
 }
+
 int build(void) { return 1; }
 int install(void) {
         //cd("floorp-11.29.0/floorp");
@@ -63,15 +68,15 @@ int uninstall(void) {
 }
 
 FORGE_GLOBAL pkg package = {
-        .name = getname,
-        .ver = getver,
-        .desc = getdesc,
-        .web = getweb,
-        .deps = NULL,
-        .download = download,
-        .build = build,
-        .install = install,
-        .uninstall = uninstall,
-        .update = forge_pkg_update_manual_check,
-        .get_changes = forge_pkg_get_changes_redownload,
+        .name            = getname,
+        .ver             = getver,
+        .desc            = getdesc,
+        .web             = getweb,
+        .deps            = NULL,
+        .download        = download,
+        .build           = build,
+        .install         = install,
+        .uninstall       = uninstall,
+        .update          = forge_pkg_update_manual_check,
+        .get_changes     = forge_pkg_get_changes_redownload,
 };

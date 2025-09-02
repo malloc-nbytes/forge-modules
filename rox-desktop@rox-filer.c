@@ -2,28 +2,27 @@
 
 #define INSTALL_PATH FORGE_PREFERRED_INSTALL_PREFIX "/bin/rox-filer"
 
-char *deps[] = {NULL}; // Must be NULL terminated
-
 char *getname(void) { return "rox-desktop@rox-filer"; }
-char *getver(void) { return "2.11.0"; }
+char *getver(void)  { return "2.11.0"; }
 char *getdesc(void) { return "ROX file manager"; }
-char *getweb(void) { return "https://www.github.com/rox-desktop/rox-filer.git/"; }
-char **getdeps(void) { return deps; }
+char *getweb(void)  { return "https://www.github.com/rox-desktop/rox-filer.git/"; }
+
 char *download(void) {
         return git_clone("rox-desktop", "rox-filer");
 }
+
 int build(void) {
         cd("ROX-Filer");
         mkdirp("build");
 
         if (!forge_io_filepath_exists("./src/configure")) {
                 cd("src");
-                cmd("autoconf");
+                CMD("autoconf", return 0);
                 cd("..");
         }
 
         cd("build");
-        configure("../src/", NULL);
+        if (!configure("../src/", NULL)) return 0;
 
         return make(NULL);
 }
@@ -36,15 +35,15 @@ int uninstall(void) {
 }
 
 FORGE_GLOBAL pkg package = {
-        .name = getname,
-        .ver = getver,
-        .desc = getdesc,
-        .web = getweb,
-        .deps = NULL,
-        .download = download,
-        .build = build,
-        .install = install,
-        .uninstall = uninstall,
-        .update = forge_pkg_git_update,
-        .get_changes = forge_pkg_git_pull,
+        .name            = getname,
+        .ver             = getver,
+        .desc            = getdesc,
+        .web             = getweb,
+        .deps            = NULL,
+        .download        = download,
+        .build           = build,
+        .install         = install,
+        .uninstall       = uninstall,
+        .update          = forge_pkg_git_update,
+        .get_changes     = forge_pkg_git_pull,
 };

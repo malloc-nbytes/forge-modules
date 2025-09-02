@@ -5,9 +5,9 @@ set -e
 for file in *.c; do
     if [[ -f "$file" ]]; then
         echo "gcc -shared -fPIC -o \"${file%.c}.so\" \"$file\""
-        gcc -shared -fPIC -o "${file%.c}.so" "$file"
+        cc -shared -fPIC -o "${file%.c}.so" "$file"
 
-        if ! [[ $? -eq 0 ]]; then 
+        if ! [[ $? -eq 0 ]]; then
                 echo "Failed to compile $file"
                 exit 1
         fi

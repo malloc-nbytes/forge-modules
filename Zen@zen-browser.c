@@ -2,8 +2,6 @@
 
 #include <forge/forge.h>
 
-char *deps[] = {NULL}; // Must be NULL terminated
-
 static const char *desktop = "[Desktop Entry]\n"
         "Version=1.0\n"
         "Name=Zen\n"
@@ -25,23 +23,40 @@ static const char *desktop = "[Desktop Entry]\n"
         "Exec=/opt/zen/zen -private-window";
 
 char *getname(void) { return "Zen@zen-browser"; }
-char *getver(void) { return "1.14.5b"; }
+char *getver(void)  { return "1.14.5b"; }
 char *getdesc(void) { return "A browser based off of Firefox"; }
-char *getweb(void) { return "https://github.com/zen-browser/desktop/releases/"; }
-char **getdeps(void) { return deps; }
+char *getweb(void)  { return "https://github.com/zen-browser/desktop/releases/"; }
+
 char *download(void) {
-        cmd("curl -O -L https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.xz");
-        cmd("tar -vxf zen.linux-x86_64.tar.xz");
+        CMD("curl -O -L https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.xz", return NULL);
+        CMD("tar -vxf zen.linux-x86_64.tar.xz", {
+                cmd("rm zen.linux-x86_64.tar.xz");
+                return NULL;
+        });
         cmd("rm zen.linux-x86_64.tar.xz");
         return "zen";
 }
+
 int build(void) { return 1; }
+
 int install(void) {
         mkdirp("/opt/zen");
-        cmd("cp -r ./* /opt/zen");
-        cmd("chmod -R 755 /opt/zen");
-        cmd("chmod +x /opt/zen/zen /opt/zen/zen-bin");
-        cmd("ln -s /opt/zen/zen-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/zen");
+        CMD("cp -r ./* /opt/zen", {
+                forge_io_rm_dir("/opt/zen");
+                return 0;
+        });
+        CMD("chmod -R 755 /opt/zen", {
+                forge_io_rm_dir("/opt/zen");
+                return 0;
+        });
+        CMD("chmod +x /opt/zen/zen /opt/zen/zen-bin", {
+                forge_io_rm_dir("/opt/zen");
+                return 0;
+        });
+        CMD("ln -s /opt/zen/zen-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/zen", {
+                forge_io_rm_dir("/opt/zen");
+                return 0;
+        });
 
         // Desktop Entry
         mkdirp("/usr/share/applications/");
@@ -49,6 +64,7 @@ int install(void) {
         forge_io_write_file("/usr/share/applications/zen.desktop", desktop);
         return cmd("chmod 644 /usr/share/applications/zen.desktop");
 }
+
 int uninstall(void) {
         cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/zen");
         cmd("rm -r /opt/zen");

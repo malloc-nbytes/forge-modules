@@ -1,42 +1,43 @@
 #include <forge/forge.h>
 
-char *deps[] = {NULL}; // Must be NULL terminated
-
 char *getname(void) { return "raysan5@raylib"; }
-char *getver(void) { return "5.5.0"; }
+char *getver(void)  { return "5.5.0"; }
 char *getdesc(void) { return "A simple and easy-to-use library to enjoy videogames programming"; }
-char *getweb(void) { return "https://github.com/raysan5/raylib.git"; }
-char **getdeps(void) { return deps; }
+char *getweb(void)  { return "https://github.com/raysan5/raylib.git"; }
+
 char *download(void) {
-        cmd("git clone https://github.com/raysan5/raylib.git --depth=1");
+        CMD("git clone https://github.com/raysan5/raylib.git --depth=1", return NULL);
         return "raylib";
 }
+
 int build(void) {
         mkdirp("build");
         cd("build");
-        cmd("cmake ..");
+        CMD("cmake ..", return 0);
         return make(NULL);
 }
+
 int install(void) {
         cd("build");
-        make("install");
+        if (!make("install")) return 0;
         return cmd("ldconfig");
 }
+
 int uninstall(void) {
         cd("build");
         return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {
-        .name = getname,
-        .ver = getver,
-        .desc = getdesc,
-        .web = getweb,
-        .deps = NULL,
-        .download = download,
-        .build = build,
-        .install = install,
-        .uninstall = uninstall,
-        .update = forge_pkg_git_update,
-        .get_changes = forge_pkg_git_pull,
+        .name            = getname,
+        .ver             = getver,
+        .desc            = getdesc,
+        .web             = getweb,
+        .deps            = NULL,
+        .download        = download,
+        .build           = build,
+        .install         = install,
+        .uninstall       = uninstall,
+        .update          = forge_pkg_git_update,
+        .get_changes     = forge_pkg_git_pull,
 };

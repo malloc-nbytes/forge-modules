@@ -26,15 +26,15 @@ int uninstall(void) {
 }
 
 FORGE_GLOBAL pkg package = {
-        .name        = getname,
-        .ver         = getver,
-        .desc        = getdesc,
-        .web         = getweb,
-        .deps        = NULL,
-        .download    = download,
-        .build       = build,
-        .install     = install,
-        .uninstall   = uninstall,
-        .update      = forge_pkg_update_manual_check,
-        .get_changes = forge_pkg_get_changes_redownload,
+        .name            = getname,
+        .ver             = getver,
+        .desc            = getdesc,
+        .web             = getweb,
+        .deps            = NULL,
+        .download        = download,
+        .build           = build,
+        .install         = install,
+        .uninstall       = uninstall,
+        .update          = forge_pkg_update_manual_check,
+        .get_changes     = forge_pkg_get_changes_redownload,
 };

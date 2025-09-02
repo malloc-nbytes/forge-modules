@@ -7,15 +7,18 @@ char *deps[] = {"malloc-nbytes@earl", NULL}; // Must be NULL terminated
 
 int uninstall(void);
 
-char *getname(void) { return "malloc-nbytes@earlmgr"; }
-char *getver(void) { return "1.0.0"; }
-char *getdesc(void) { return "Manager application for EARL"; }
-char *getweb(void) { return "https://www.github.com/malloc-nbytes/earlmgr.git/"; }
+char *getname(void)  { return "malloc-nbytes@earlmgr"; }
+char *getver(void)   { return "1.0.0"; }
+char *getdesc(void)  { return "Manager application for EARL"; }
+char *getweb(void)   { return "https://www.github.com/malloc-nbytes/earlmgr.git/"; }
 char **getdeps(void) { return deps; }
+
 char *download(void) {
         return git_clone("malloc-nbytes", "earlmgr");
 }
+
 int build(void) { return 1; }
+
 int install(void) {
         printf(BOLD YELLOW "* NOTE:" RESET " An error may pop up, just ignore it\n\n");
 
@@ -31,7 +34,7 @@ int install(void) {
                 }
         }
         if (found) { uninstall(); }
-        //cmd_as("echo -e \"y\ny\" | earl ./earlmgr.rl", user);
+
         int choice = forge_chooser_yesno("This program wants to modify the .bashrc, is this ok?", "recommended", 2);
         if (choice < 0) {
                 printf("something went wrong, aborting...\n");
@@ -84,7 +87,8 @@ int uninstall(void) {
                 printf("          These need to be manually removed.\n");
         }
 
-        for (int i = 0; lines && lines[i]; ++i) free(lines[i]);
+        for (int i = 0; lines && lines[i]; ++i)
+                free(lines[i]);
         if (lines) free(lines);
         forge_str_destroy(&bashrc);
 
@@ -92,18 +96,15 @@ int uninstall(void) {
 }
 
 FORGE_GLOBAL pkg package = {
-        .name = getname,
-        .ver = getver,
-        .desc = getdesc,
-        .web = getweb,
-        .deps = getdeps,
-        .download = download,
-        .build = build,
-        .install = install,
-        .uninstall = uninstall,
-        .update = forge_pkg_git_update, // or define your own if not using git
-
-         // Make this NULL to just re-download the source code
-         // or define your own if not using git
-        .get_changes = forge_pkg_git_pull,
+        .name            = getname,
+        .ver             = getver,
+        .desc            = getdesc,
+        .web             = getweb,
+        .deps            = getdeps,
+        .download        = download,
+        .build           = build,
+        .install         = install,
+        .uninstall       = uninstall,
+        .update          = forge_pkg_git_update,
+        .get_changes     = forge_pkg_git_pull,
 };

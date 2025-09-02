@@ -3,8 +3,6 @@
 
 #include <forge/forge.h>
 
-char *deps[] = {NULL}; // Must be NULL terminated
-
 #define VERSION "12.1.2"
 
 static const char *desktop = "[Desktop Entry]\n"
@@ -27,27 +25,46 @@ static const char *desktop = "[Desktop Entry]\n"
         "Name=Open a New Private Window\n"
         "Exec=/opt/floorp/floorp -private-window";
 
-char *getname(void) { return "Floorp@floorp-browser-" VERSION; }
-char *getver(void) { return VERSION; }
-char *getdesc(void) { return "A browser based off of Firefox"; }
-char **getdeps(void) { return deps; }
-char *getweb(void) { return "https://github.com/Floorp-Projects/Floorp/releases/"; }
+char *getname(void)  { return "Floorp@floorp-browser-" VERSION; }
+char *getver(void)   { return VERSION; }
+char *getdesc(void)  { return "A browser based off of Firefox"; }
+char *getweb(void)   { return "https://github.com/Floorp-Projects/Floorp/releases/"; }
+
 char *download(void) {
-        cmd("wget -O floorp-zipped.tar.xz https://github.com/Floorp-Projects/Floorp/releases/download/v12.1.2/floorp-linux-amd64.tar.xz");
+        CMD("wget -O floorp-zipped.tar.xz https://github.com/Floorp-Projects/Floorp/releases/download/v12.1.2/floorp-linux-amd64.tar.xz", {
+                forge_io_rm_dir("floorp-zipped.tar.xz");
+                return NULL;
+        });
         mkdirp("floorp-" VERSION);
-        cmd("tar -vxf ./floorp-zipped.tar.xz -C floorp-" VERSION);
+        CMD("tar -vxf ./floorp-zipped.tar.xz -C floorp-" VERSION, {
+                forge_io_rm_dir("floorp-zipped.tar.xz");
+                return NULL;
+        });
         cmd("rm floorp-zipped.tar.xz");
         return "floorp-"  VERSION;
 }
+
 int build(void) { return 1; }
+
 int install(void) {
-        //cd("floorp-11.29.0/floorp");
         cd("floorp");
         mkdirp("/opt/floorp");
-        cmd("cp -r ./* /opt/floorp");
-        cmd("chmod -R 755 /opt/floorp");
-        cmd("chmod +x /opt/floorp/floorp /opt/floorp/floorp-bin");
-        cmd("ln -s /opt/floorp/floorp-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp");
+        CMD("cp -r ./* /opt/floorp", {
+                forge_io_rm_dir("/opt/floorp");
+                return 0;
+        });
+        CMD("chmod -R 755 /opt/floorp", {
+                forge_io_rm_dir("/opt/floorp");
+                return 0;
+        });
+        CMD("chmod +x /opt/floorp/floorp /opt/floorp/floorp-bin", {
+                forge_io_rm_dir("/opt/floorp");
+                return 0;
+        });
+        CMD("ln -s /opt/floorp/floorp-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp", {
+                forge_io_rm_dir("/opt/floorp");
+                return 0;
+        });
 
         // Desktop Entry
         mkdirp("/usr/share/applications/");
@@ -65,15 +82,15 @@ int uninstall(void) {
 }
 
 FORGE_GLOBAL pkg package = {
-        .name = getname,
-        .ver = getver,
-        .desc = getdesc,
-        .web = getweb,
-        .deps = NULL,
-        .download = download,
-        .build = build,
-        .install = install,
-        .uninstall = uninstall,
-        .update = forge_pkg_update_manual_check,
-        .get_changes = forge_pkg_get_changes_redownload,
+        .name            = getname,
+        .ver             = getver,
+        .desc            = getdesc,
+        .web             = getweb,
+        .deps            = NULL,
+        .download        = download,
+        .build           = build,
+        .install         = install,
+        .uninstall       = uninstall,
+        .update          = forge_pkg_update_manual_check,
+        .get_changes     = forge_pkg_get_changes_redownload,
 };
