@@ -12,15 +12,15 @@ char *download(void) {
 int build(void) {
         cmd("/bin/sh autogen.sh");
         configure("./", NULL);
-        make(NULL);
+        return make(NULL);
 }
 
 int install(void) {
-        make("install");
+        return make("install");
 }
 
 int uninstall(void) {
-        make("uninstall");
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {
