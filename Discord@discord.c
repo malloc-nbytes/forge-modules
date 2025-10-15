@@ -23,11 +23,16 @@ char *download(void) {
 }
 
 int build(void) { return 1; }
+
 int install(void) {
-        cd("discord");
+        CD("discord", {
+                printf("cwd: ", cwd());
+                return 0;
+        });
         mkdirp("/opt/discord");
         return cmd("cp -r ./* /opt/discord");
 }
+
 int uninstall(void) {
         return cmd("rm -r /opt/discord");
 }
