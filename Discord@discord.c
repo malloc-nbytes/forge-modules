@@ -26,10 +26,14 @@ int build(void) { return 1; }
 
 int install(void) {
         mkdirp("/opt/discord");
-        return cmd("cp -r ./* /opt/discord");
+        CMD("cp -r ./* /opt/discord", return 0);
+        cmd("chmod -R 755 /opt/discord");
+        cmd("chmod +x /opt/discord/Discord");
+        cmd("ln -s /opt/discord/Discord " FORGE_PREFERRED_INSTALL_PREFIX "/bin/discord");
 }
 
 int uninstall(void) {
+        CMD("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/discord", return 0);
         return cmd("rm -r /opt/discord");
 }
 
