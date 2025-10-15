@@ -27,19 +27,19 @@ int build(void) { return 1; }
 int install(void) {
         mkdirp("/opt/discord");
         CMD("cp -r ./* /opt/discord", {
-                cmd("rm /opt/discord");
+                cmd("rm -rf /opt/discord");
                 return 0;
         });
         CMD("chmod -R 755 /opt/discord", {
-                cmd("rm /opt/discord");
+                cmd("rm -rf /opt/discord");
                 return 0;
         });
         CMD("chmod +x /opt/discord/Discord", {
-                cmd("rm /opt/discord");
+                cmd("rm -rf /opt/discord");
                 return 0;
         });
         CMD("ln -s /opt/discord/Discord/Discord " FORGE_PREFERRED_INSTALL_PREFIX "/bin/discord", {
-                cmd("rm /opt/discord");
+                cmd("rm -rf /opt/discord");
                 return 0;
         });
         return 1;
@@ -47,7 +47,7 @@ int install(void) {
 
 int uninstall(void) {
         CMD("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/discord", return 0);
-        return cmd("rm -r /opt/discord");
+        return cmd("rm -rf /opt/discord");
 }
 
 FORGE_GLOBAL pkg package = {
