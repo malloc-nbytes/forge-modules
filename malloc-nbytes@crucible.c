@@ -10,17 +10,17 @@ char *download(void) {
 }
 
 int build(void) {
-        cd("src");
-        return cmd("sh build.sh");
+        cmd("/bin/sh autogen.sh");
+        configure("./", NULL);
+        make(NULL);
 }
 
 int install(void) {
-        cd("src");
-        return cmd("mv ./cruc " FORGE_PREFERRED_INSTALL_PREFIX "/bin/");
+        make("install");
 }
 
 int uninstall(void) {
-        return cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/cruc");
+        make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {
