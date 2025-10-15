@@ -26,7 +26,7 @@ int build(void) { return 1; }
 
 int install(void) {
         CD("discord", {
-                printf("cwd: ", cwd());
+                printf("cwd: %s\n", cwd());
                 return 0;
         });
         mkdirp("/opt/discord");
