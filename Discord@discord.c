@@ -38,7 +38,7 @@ int install(void) {
                 cmd("rm -rf /opt/discord");
                 return 0;
         });
-        CMD("ln -s /opt/discord/Discord/Discord " FORGE_PREFERRED_INSTALL_PREFIX "/bin/discord", {
+        CMD("ln -sf /opt/discord/Discord/Discord " FORGE_PREFERRED_INSTALL_PREFIX "/bin/discord", {
                 cmd("rm -rf /opt/discord");
                 return 0;
         });
