@@ -33,7 +33,7 @@ int install(void) {
         char *buf = forge_cstr_builder("cp ./.tmux.conf ", config_fp.data, NULL);
         cmd(buf);
 
-        change_file_owner(buf, user);
+        change_file_owner(config_fp.data, user);
 
         forge_str_destroy(&config_fp);
         free(buf);
