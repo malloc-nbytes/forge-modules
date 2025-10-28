@@ -1,5 +1,7 @@
 #include <forge/forge.h>
 
+#include <stdio.h>
+
 char *getname(void) { return "malloc-nbytes@qwr"; }
 char *getver(void)  { return "1.0.0"; }
 char *getdesc(void) { return "A qemu wrapper for managing VMs"; }
@@ -10,6 +12,7 @@ char *download(void) {
 }
 
 int build(void) {
+        printf("CWD: %s\n", cwd());
         return cmd("/bin/sh build.sh");
 }
 
