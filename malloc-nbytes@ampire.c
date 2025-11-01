@@ -6,6 +6,7 @@ char *getdesc(void)  { return "A music player in the terminal"; }
 char *getweb(void)   { return "https://www.github.com/malloc-nbytes/ampire.git/"; }
 
 char *download(void) {
+        //CMD("git clone https://www.github.com/malloc-nbytes/ampire.git/ --recursive", return NULL);
         CMD("git clone https://www.github.com/malloc-nbytes/ampire.git/ --recurse-submodules --shallow-submodules --depth=1", return NULL);
         return "ampire";
 }

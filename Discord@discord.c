@@ -26,19 +26,19 @@ int build(void) { return 1; }
 
 int install(void) {
         mkdirp("/opt/discord");
-        CMD("cp -r ./* /opt/discord", {
-                cmd("rm -rf /opt/discord");
+        CMD("cp -r ./* $DESTDIR/opt/discord", {
+                /* cmd("rm -rf /opt/discord"); */
                 return 0;
         });
-        CMD("chmod -R 755 /opt/discord", {
-                cmd("rm -rf /opt/discord");
+        CMD("chmod -R 755 $DESTDIR/opt/discord", {
+                /* cmd("rm -rf /opt/discord"); */
                 return 0;
         });
-        CMD("chmod +x /opt/discord/Discord", {
-                cmd("rm -rf /opt/discord");
+        CMD("chmod +x $DESTDIR/opt/discord/Discord", {
+                /* cmd("rm -rf /opt/discord"); */
                 return 0;
         });
-        CMD("ln -sf /opt/discord/Discord/Discord " FORGE_PREFERRED_INSTALL_PREFIX "/bin/discord", {
+        CMD("ln -sf $DESTDIR/opt/discord/Discord/Discord " FORGE_PREFERRED_INSTALL_PREFIX "/bin/discord", {
                 cmd("rm -rf /opt/discord");
                 return 0;
         });
