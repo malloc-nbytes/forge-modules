@@ -22,8 +22,6 @@ char *download(void) {
         return "discord";
 }
 
-int build(void) { return 1; }
-
 int install(void) {
         mkdirp("/opt/discord");
         CMD("cp -r ./* $DESTDIR/opt/discord", {
@@ -57,7 +55,7 @@ FORGE_GLOBAL pkg package = {
         .web             = getweb,
         .deps            = NULL,
         .download        = download,
-        .build           = build,
+        .build           = NULL,
         .install         = install,
         .uninstall       = uninstall,
         .update          = forge_pkg_update_manual_check,
