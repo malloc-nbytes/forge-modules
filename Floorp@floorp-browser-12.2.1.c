@@ -60,6 +60,9 @@ int install(void) {
         CMD("ln -s $DESTDIR/opt/floorp/floorp-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp", {
                 return 0;
         });
+        CMD("ln -s /opt/floorp/floorp-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp", {
+                return 0;
+        });
 
         // Desktop Entry
         //mkdirp("$DESTDIR/usr/share/applications/");
