@@ -46,7 +46,8 @@ char *download(void) {
 
 int install(void) {
         cd("floorp");
-        mkdirp("$DESTDIR/opt/floorp");
+        //mkdirp("$DESTDIR/opt/floorp");
+        cmd("mkdir -p $DESTDIR/opt/floorp");
         CMD("cp -r ./* $DESTDIR/opt/floorp", {
                 return 0;
         });
