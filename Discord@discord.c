@@ -23,7 +23,7 @@ char *download(void) {
 }
 
 int install(void) {
-        mkdirp("$DESTDIR/opt/discord");
+        CMD("mkdir -p $DESTDIR/opt/discord", return 0);
         CMD("cp -r ./* $DESTDIR/opt/discord", {
                 /* cmd("rm -rf /opt/discord"); */
                 return 0;

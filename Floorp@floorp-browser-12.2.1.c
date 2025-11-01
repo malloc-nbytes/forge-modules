@@ -47,7 +47,7 @@ char *download(void) {
 int install(void) {
         cd("floorp");
         //mkdirp("$DESTDIR/opt/floorp");
-        cmd("mkdir -p $DESTDIR/opt/floorp");
+        cmd("mkdir -p $DESTDIR/opt/floorp", return 0);
         CMD("cp -r ./* $DESTDIR/opt/floorp", {
                 return 0;
         });
@@ -62,7 +62,8 @@ int install(void) {
         });
 
         // Desktop Entry
-        mkdirp("$DESTDIR/usr/share/applications/");
+        //mkdirp("$DESTDIR/usr/share/applications/");
+        CMD("mkdir -p $DESTDIR/usr/share/applications", return 0);
         forge_io_create_file("$DESTDIR/usr/share/applications/floorp.desktop", 1);
         forge_io_write_file("$DESTDIR/usr/share/applications/floorp.desktop", desktop);
         cmd("chmod 644 $DESTDIR/usr/share/applications/floorp.desktop");
