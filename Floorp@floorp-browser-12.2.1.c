@@ -44,33 +44,27 @@ char *download(void) {
         return "floorp-"  VERSION;
 }
 
-int build(void) { return 1; }
-
 int install(void) {
         cd("floorp");
-        mkdirp("/opt/floorp");
-        CMD("cp -r ./* /opt/floorp", {
-                forge_io_rm_dir("/opt/floorp");
+        mkdirp("$DESTDIR/opt/floorp");
+        CMD("cp -r ./* $DESTDIR/opt/floorp", {
                 return 0;
         });
-        CMD("chmod -R 755 /opt/floorp", {
-                forge_io_rm_dir("/opt/floorp");
+        CMD("chmod -R 755 $DESTDIR/opt/floorp", {
                 return 0;
         });
-        CMD("chmod +x /opt/floorp/floorp /opt/floorp/floorp-bin", {
-                forge_io_rm_dir("/opt/floorp");
+        CMD("chmod +x $DESTDIR/opt/floorp/floorp $DESTDIR/opt/floorp/floorp-bin", {
                 return 0;
         });
-        CMD("ln -s /opt/floorp/floorp-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp", {
-                forge_io_rm_dir("/opt/floorp");
+        CMD("ln -s $DESTDIR/opt/floorp/floorp-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp", {
                 return 0;
         });
 
         // Desktop Entry
-        mkdirp("/usr/share/applications/");
-        forge_io_create_file("/usr/share/applications/floorp.desktop", 1);
-        forge_io_write_file("/usr/share/applications/floorp.desktop", desktop);
-        cmd("chmod 644 /usr/share/applications/floorp.desktop");
+        mkdirp("$DESTDIR/usr/share/applications/");
+        forge_io_create_file("$DESTDIR/usr/share/applications/floorp.desktop", 1);
+        forge_io_write_file("$DESTDIR/usr/share/applications/floorp.desktop", desktop);
+        cmd("chmod 644 $DESTDIR/usr/share/applications/floorp.desktop");
 
         return 1;
 }
@@ -88,7 +82,7 @@ FORGE_GLOBAL pkg package = {
         .web             = getweb,
         .deps            = NULL,
         .download        = download,
-        .build           = build,
+        .build           = NULL,
         .install         = install,
         .uninstall       = uninstall,
         .update          = forge_pkg_update_manual_check,
