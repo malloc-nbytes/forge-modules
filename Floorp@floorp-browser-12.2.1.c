@@ -46,30 +46,18 @@ char *download(void) {
 
 int install(void) {
         cd("floorp");
-        //mkdirp("$DESTDIR/opt/floorp");
-        CMD("mkdir -p $DESTDIR/opt/floorp", return 0);
-        CMD("cp -r ./* $DESTDIR/opt/floorp", {
-                return 0;
-        });
-        CMD("chmod -R 755 $DESTDIR/opt/floorp", {
-                return 0;
-        });
-        CMD("chmod +x $DESTDIR/opt/floorp/floorp $DESTDIR/opt/floorp/floorp-bin", {
-                return 0;
-        });
-        CMD("ln -s $DESTDIR/opt/floorp/floorp-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp", {
-                return 0;
-        });
-        CMD("ln -s /opt/floorp/floorp-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp", {
-                return 0;
-        });
+        CMD("mkdir -p $DESTDIR/opt/floorp",                                                         return 0);
+        CMD("cp -r ./* $DESTDIR/opt/floorp",                                                        return 0);
+        CMD("chmod -R 755 $DESTDIR/opt/floorp",                                                     return 0);
+        CMD("chmod +x $DESTDIR/opt/floorp/floorp $DESTDIR/opt/floorp/floorp-bin",                   return 0);
+        CMD("ln -sf $DESTDIR/opt/floorp/floorp-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp",  return 0);
+        CMD("ln -sf /opt/floorp/floorp-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp",          return 0);
 
         // Desktop Entry
-        //mkdirp("$DESTDIR/usr/share/applications/");
-        CMD("mkdir -p $DESTDIR/usr/share/applications", return 0);
+        CMD("mkdir -p $DESTDIR/usr/share/applications",                        return 0);
         forge_io_create_file("$DESTDIR/usr/share/applications/floorp.desktop", 1);
-        forge_io_write_file("$DESTDIR/usr/share/applications/floorp.desktop", desktop);
-        cmd("chmod 644 $DESTDIR/usr/share/applications/floorp.desktop");
+        forge_io_write_file("$DESTDIR/usr/share/applications/floorp.desktop",  desktop);
+        CMD("chmod 644 $DESTDIR/usr/share/applications/floorp.desktop",        return 0);
 
         return 1;
 }
