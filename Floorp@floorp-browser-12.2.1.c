@@ -54,12 +54,23 @@ int install(void) {
         CMD("ln -sf /opt/floorp/floorp-bin " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp",          return 0);
 
         // Desktop Entry
-        CMD("mkdir -p $DESTDIR/usr/share/applications",                        return 0);
-        forge_io_create_file("$DESTDIR/usr/share/applications/floorp.desktop", 1);
-        forge_io_write_file("$DESTDIR/usr/share/applications/floorp.desktop",  desktop);
-        CMD("chmod 644 $DESTDIR/usr/share/applications/floorp.desktop",        return 0);
+        CMD("mkdir -p $DESTDIR/usr/share/applications", return 0);
 
+        char *desktop_fp = forge_cstr_builder(env("DESTDIR"), "/usr/share/applications/floorp.desktop", NULL);
+        forge_io_create_file(desktop_fp, 1);
+        forge_io_write_file(desktop_fp, desktop);
+
+        char *chmod_cmd = forge_cstr_builder("chmod 644 ", desktop_fp, NULL);
+        CMD(chmod_cmd, goto bad);
+
+        free(chmod_cmd);
+        free(desktop_fp);
         return 1;
+
+ bad:
+        free(chmod_cmd);
+        free(desktop_fp);
+        return 0;
 }
 int uninstall(void) {
         cmd("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/floorp");

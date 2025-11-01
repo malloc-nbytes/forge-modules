@@ -25,19 +25,15 @@ char *download(void) {
 int install(void) {
         CMD("mkdir -p $DESTDIR/opt/discord", return 0);
         CMD("cp -r ./* $DESTDIR/opt/discord", {
-                /* cmd("rm -rf /opt/discord"); */
                 return 0;
         });
         CMD("chmod -R 755 $DESTDIR/opt/discord", {
-                /* cmd("rm -rf /opt/discord"); */
                 return 0;
         });
         CMD("chmod +x $DESTDIR/opt/discord/Discord", {
-                /* cmd("rm -rf /opt/discord"); */
                 return 0;
         });
         CMD("ln -sf $DESTDIR/opt/discord/Discord/Discord " FORGE_PREFERRED_INSTALL_PREFIX "/bin/discord", {
-                cmd("rm -rf /opt/discord");
                 return 0;
         });
         return 1;
