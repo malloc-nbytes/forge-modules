@@ -11,19 +11,19 @@ char *download(void) {
 
 int build(void) {
         mkdirp("build");
-        cd("build");
+        CD("build", return 0);
         CMD("cmake -S .. -B .", return 0);
-        return cmd("make");
+        return make(NULL);
 }
 
 int install(void) {
-        cd("build");
-        return cmd("make install");
+        CD("build", return 0);
+        return make("install");
 }
 
 int uninstall(void) {
-        cd("build");
-        return cmd("make uninstall");
+        CD("build", return 0);
+        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {
