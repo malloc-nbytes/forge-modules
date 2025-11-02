@@ -16,6 +16,7 @@ build(void)
 {
         CMD("autoreconf -iv", return 0);
         CMD("./configure --prefix=/usr --libdir=/usr/lib64", return 0);
+        CMD("cp -v /usr/include/forge/conf.h ./src/forge/conf.h", return 0);
         return make(NULL);
 }
 
@@ -23,9 +24,6 @@ int
 install(void)
 {
         if (!make("install")) return 0;
-
-        // Remove conf.h to preserve user config
-        cmd("rm -f $DESTDIR/usr/include/forge/conf.h");
 
         // Install forge binary to temporary name
         char *cmd_mv = forge_cstr_builder(
