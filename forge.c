@@ -36,7 +36,7 @@ build(void)
                 return 0;
         }
 
-        char *conf = forge_str_builder("./configure --prefix=", prefix, " --libdir=", libdir, NULL);
+        char *conf = forge_cstr_builder("./configure --prefix=", prefix, " --libdir=", libdir, NULL);
 
         CMD("autoreconf -iv", return 0);
         CMD(conf, return 0);
