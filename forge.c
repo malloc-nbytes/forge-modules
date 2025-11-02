@@ -25,6 +25,9 @@ install(void)
 {
         if (!make("install")) return 0;
 
+        // Remove conf.h to preserve user config
+        cmd("rm -f $DESTDIR/usr/include/forge/conf.h");
+
         // Install forge binary to temporary name
         char *cmd_mv = forge_cstr_builder(
                 "mv $DESTDIR/usr/bin/forge $DESTDIR/usr/bin/forge.new && "
