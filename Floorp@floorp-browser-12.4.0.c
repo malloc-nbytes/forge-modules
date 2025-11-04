@@ -31,7 +31,7 @@ char *getdesc(void)  { return "A browser based off of Firefox"; }
 char *getweb(void)   { return "https://github.com/Floorp-Projects/Floorp/releases/"; }
 
 char *download(void) {
-        CMD("wget -O floorp-zipped.tar.xz https://github.com/Floorp-Projects/Floorp/releases/download/v" VERSION "/floorp-linux-amd64.tar.xz", {
+        CMD("wget -O floorp-zipped.tar.xz https://github.com/Floorp-Projects/Floorp/releases/download/v12.4.0/floorp-linux-x86_64.tar.xz", {
                 forge_io_rm_dir("floorp-zipped.tar.xz");
                 return NULL;
         });
