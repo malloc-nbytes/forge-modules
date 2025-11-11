@@ -19,7 +19,7 @@ download(void)
 int
 build(void)
 {
-        CMD("git submodule update --init", return 0);
+        //CMD("git submodule update --init", return 0);
         CMD("autoreconf -i", return 0);
         CMD("automake", return 0);
         CMD("autoconf", return 0);
