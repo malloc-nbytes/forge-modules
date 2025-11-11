@@ -12,7 +12,7 @@ char *sugg[] = {
         "GNU@gcc",
         "git@git",
         NULL,
-},
+};
 
 char *getname(void)  { return "Kitware@cmake"; }
 char *getver(void)   { return "rolling"; }
