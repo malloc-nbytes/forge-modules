@@ -1,7 +1,5 @@
 #include <forge/forge.h>
 
-const char *deps[] = { "Make@make", NULL };
-
 char *msgs[] = {
         "Install Qt for Qt-based GUI",
         "Install sphinx for building documents",
@@ -24,7 +22,7 @@ char **getsuggested(void) { return sugg; }
 char *
 download(void)
 {
-        CMD("git clone -b release https://github.com/Kitware/CMake.git cmake", return NULL);
+        CMD("git clone -b release https://github.com/Kitware/CMake.git cmake --depth=1", return NULL);
         return "cmake";
 }
 
