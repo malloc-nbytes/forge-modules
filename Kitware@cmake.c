@@ -1,23 +1,15 @@
 #include <forge/forge.h>
 
-char *msgs[] = {
-        "Install Qt for Qt-based GUI",
-        "Install sphinx for building documents",
+char *deps[] = {
+        "libarchive@libarchive",
         NULL,
 };
 
-char *sugg[] = {
-        "GNU@gcc",
-        "git@git",
-        NULL,
-};
-
+char **getdeps(void) { return deps; }
 char *getname(void)  { return "Kitware@cmake"; }
 char *getver(void)   { return "rolling"; }
-char *getdesc(void)  { return "A music player in the terminal"; }
-char *getweb(void)   { return "https://www.github.com/malloc-nbytes/ampire.git/"; }
-char **getmsgs(void) { return msgs; }
-char **getsuggested(void) { return sugg; }
+char *getdesc(void)  { return "Another build system"; }
+char *getweb(void)   { return "https://github.com/Kitware/CMake"; }
 
 char *
 download(void)
@@ -51,9 +43,9 @@ FORGE_GLOBAL pkg package = {
         .ver             = getver,
         .desc            = getdesc,
         .web             = getweb,
-        .deps            = NULL,
-        .msgs            = getmsgs,
-        .suggested       = getsuggested,
+        .deps            = getdeps,
+        .msgs            = NULL,
+        .suggested       = NULL,
         .download        = download,
         .build           = build,
         .install         = install,
