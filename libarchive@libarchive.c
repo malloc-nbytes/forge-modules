@@ -14,6 +14,7 @@ download(void)
 int
 build(void)
 {
+        CMD("autoreconf -iv", return 0);
         CMD("./configure --prefix=/usr --disable-static", return 0);
         return make(NULL);
 }
