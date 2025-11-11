@@ -2,6 +2,8 @@
 
 char *deps[] = {
         "libarchive@libarchive",
+        "libuv@libuv",
+        "nghttp2@nghttp2",
         NULL,
 };
 
