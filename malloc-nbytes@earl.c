@@ -1,5 +1,8 @@
 #include <forge/forge.h>
 
+char *deps[] = {"Kitware@cmake", NULL};
+
+char **getdeps(void) { return deps; }
 char *getname(void) { return "malloc-nbytes@earl"; }
 char *getver(void)  { return "0.9.7"; }
 char *getdesc(void) { return "A scripting language to replace BASH"; }
@@ -32,7 +35,7 @@ FORGE_GLOBAL pkg package = {
         .ver             = getver,
         .desc            = getdesc,
         .web             = getweb,
-        .deps            = NULL,
+        .deps            = getdeps,
         .msgs            = NULL,
         .suggested       = NULL,
         .download        = download,
