@@ -46,7 +46,7 @@ install(void)
         CMD("ln -v -sf cracklib-words /usr/share/dict/words", return 0);
         CMD("echo $(hostname) >> /usr/share/dict/cracklib-extra-words", return 0);
         CMD("install -v -m755 -d /usr/lib/cracklib", return 0);
-        return cmd("create-cracklib-dict /usr/share/dict/cracklib-words /usr/share/dict/cracklib-extra-words");
+        return cmd(FORGE_PREFERRED_INSTALL_PREFIX "/create-cracklib-dict /usr/share/dict/cracklib-words /usr/share/dict/cracklib-extra-words");
 }
 
 FORGE_GLOBAL pkg package = {
