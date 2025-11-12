@@ -10,10 +10,10 @@ char *msgs[] = {
 };
 
 char **getmsgs(void) { return msgs; }
-char *getname(void)  { return "crypsetup@crypsetup"; }
+char *getname(void)  { return "cracklib@cracklib"; }
 char *getver(void)   { return "rolling"; }
-char *getdesc(void)  { return "Set up transparent encryption of block devices using the kernel crypto API"; }
-char *getweb(void)   { return ""; }
+char *getdesc(void)  { return "CrackLib Library and Dictionaries"; }
+char *getweb(void)   { return "https://github.com/cracklib/cracklib/"; }
 
 char *
 download(void)
