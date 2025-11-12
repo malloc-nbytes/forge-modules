@@ -36,6 +36,7 @@ build(void)
 int
 install(void)
 {
+        if (!cd("libtasn1-4.20.0")) return 0;
         return make("install");
 }
 

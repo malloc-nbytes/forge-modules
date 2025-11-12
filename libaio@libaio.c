@@ -39,6 +39,7 @@ build(void)
 int
 install(void)
 {
+        if (!cd("libaio-0.3.113")) return 0;
         return make("install");
 }
 
