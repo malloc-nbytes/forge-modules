@@ -3,35 +3,17 @@
 // TODO: rebuild shadow
 // https://www.linuxfromscratch.org/blfs/view/stable/postlfs/cracklib.html
 
-char *deps[] = {
-        "JSON-C@JSON-C",
-        "lvm2@lvm2",
-        "rpm-software-management@popt",
-        NULL,
-};
-
 char *msgs[] = {
-        "To use this package, you must set these kernel configurations:",
-        YELLOW,
-        "    [*]   MD",
-        "    <*/M> BLK_DEV_DM",
-        "    <*/M> DM_CRYPT",
-        "    -*-   CRYPTO",
-        "    <*/M> CRYPTO_AES",
-        "    <*/M> CRYPTO_TWOFISH",
-        "    <*/M> CRYPTO_XTS",
-        "    <*/M> CRYPTO_SHA256",
-        "    <*/M> CRYPTO_USER_API_SKCIPHER",
-        RESET,
+        "Additional word lists are available at " YELLOW "https://www.skullsecurity.org/wiki/Passwords" RESET,
+        "See this package's " YELLOW "dump()" RESET " function for how to install them.",
         NULL,
 };
 
-char **getdeps(void) { return deps; }
 char **getmsgs(void) { return msgs; }
-char *getname(void)  { return "cracklib@cracklib"; }
+char *getname(void)  { return "crypsetup@crypsetup"; }
 char *getver(void)   { return "rolling"; }
-char *getdesc(void)  { return "CrackLib Library and Dictionaries"; }
-char *getweb(void)   { return "https://github.com/cracklib/cracklib"; }
+char *getdesc(void)  { return "Set up transparent encryption of block devices using the kernel crypto API"; }
+char *getweb(void)   { return ""; }
 
 char *
 download(void)
@@ -45,16 +27,25 @@ download(void)
 int
 build(void)
 {
-        CMD("./configure --prefix=/usr       \
-            --disable-ssh-token              \
-            --disable-asciidoc", return 0);
+        CD("src", return 0);
+        CMD("/bin/bash autogen.sh", return 0);
+        CMD("CPPFLAGS+=' -I /usr/include/python3.13' \
+                ./configure --prefix=/usr            \
+                --disable-static                     \
+                --with-default-dict=/usr/lib/cracklib/pw_dict", return 0);
         return make(NULL);
 }
 
 int
 install(void)
 {
-        return make("install");
+        CD("src", return 0);
+        if (!make("install")) return 0;
+        CMD("xzcat ../cracklib-words-2.10.3.xz > /usr/share/dict/cracklib-words", return 0);
+        CMD("ln -v -sf cracklib-words /usr/share/dict/words", return 0);
+        CMD("echo $(hostname) >> /usr/share/dict/cracklib-extra-words", return 0);
+        CMD("install -v -m755 -d /usr/lib/cracklib", return 0);
+        return cmd("create-cracklib-dict /usr/share/dict/cracklib-words /usr/share/dict/cracklib-extra-words");
 }
 
 FORGE_GLOBAL pkg package = {
@@ -62,7 +53,7 @@ FORGE_GLOBAL pkg package = {
         .ver             = getver,
         .desc            = getdesc,
         .web             = getweb,
-        .deps            = getdeps,
+        .deps            = NULL,
         .msgs            = getmsgs,
         .suggested       = NULL,
         .download        = download,
