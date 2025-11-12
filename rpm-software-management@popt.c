@@ -5,18 +5,31 @@
 char *getname(void)  { return "rpm-software-management@popt"; }
 char *getver(void)   { return "rolling"; }
 char *getdesc(void)  { return "C library for parsing command line parameters"; }
-char *getweb(void)   { return "https://github.com/rpm-software-management/popt"; }
+char *getweb(void)   { return "https://ftp.osuosl.org/pub/rpm/popt/"; }
 
 char *
 download(void)
 {
-        return git_clone("rpm-software-management", "popt");
+        if (!cmd("wget -O popt.tar.gz https://ftp.osuosl.org/pub/rpm/popt/releases/popt-1.x/popt-1.19.tar.gz"))
+                return NULL;
+
+        if (!mkdirp("popt")) return 0;
+
+        CMD("tar -vxf ./popt.tar.gz -C popt", {
+                forge_io_rm_dir("popt.tar.gz");
+                return NULL;
+        });
+
+        (void)cmd("rm popt.tar.gz");
+
+        return "popt";
+
 }
 
 int
 build(void)
 {
-        CMD("autoreconf -iv", return 0);
+        if (!cd("popt-1.19")) return 0;
         CMD("./configure --prefix=/usr --disable-static", return 0);
         return make(NULL);
 }
@@ -24,6 +37,7 @@ build(void)
 int
 install(void)
 {
+        if (!cd("popt-1.19")) return 0;
         return make("install");
 }
 
