@@ -1,5 +1,7 @@
 #include <forge/forge.h>
 
+#include <stdio.h>
+
 // TODO: rebuild shadow
 // https://www.linuxfromscratch.org/blfs/view/stable/postlfs/cracklib.html
 
@@ -18,6 +20,9 @@ char *getweb(void)   { return "https://github.com/cracklib/cracklib/"; }
 char *
 download(void)
 {
+        printf(RED BOLD "CRACKLIB IS CURRENTLY BROKEN" RESET "\n");
+        return NULL;
+
         char *dir = git_clone("cracklib", "cracklib");
         //CD(dir, return NULL);
         CMD("wget https://github.com/cracklib/cracklib/releases/download/v2.10.3/cracklib-words-2.10.3.xz", return 0);
@@ -28,6 +33,9 @@ download(void)
 int
 build(void)
 {
+        printf(RED BOLD "CRACKLIB IS CURRENTLY BROKEN" RESET "\n");
+        return 0;
+
         CD("src", return 0);
         CMD("/bin/bash autogen.sh", return 0);
         CMD("CPPFLAGS+=' -I /usr/include/python3.13' \
@@ -40,6 +48,9 @@ build(void)
 int
 install(void)
 {
+        printf(RED BOLD "CRACKLIB IS CURRENTLY BROKEN" RESET "\n");
+        return 0;
+
         CD("src", return 0);
         if (!make("install")) return 0;
         CMD("xzcat ../cracklib-words-2.10.3.xz > /usr/share/dict/cracklib-words", return 0);
