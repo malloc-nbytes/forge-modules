@@ -26,7 +26,7 @@ char *msgs[] = {
 char **getdeps(void) { return deps; }
 char **getmsgs(void) { return msgs; }
 char *getname(void)  { return "cryptsetup@cryptsetup"; }
-char *getver(void)   { return "rolling"; }
+char *getver(void)   { return "2.8.1"; }
 char *getdesc(void)  { return "Set up transparent encryption of block devices using the kernel crypto API"; }
 char *getweb(void)   { return "https://www.linuxfromscratch.org/blfs/view/stable/postlfs/cryptsetup.html"; }
 
@@ -61,6 +61,7 @@ build(void)
 int
 install(void)
 {
+        if (!cd("cryptsetup-2.8.1")) return 0;
         return make("install");
 }
 
