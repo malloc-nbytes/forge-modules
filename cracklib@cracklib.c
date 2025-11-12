@@ -6,7 +6,7 @@
 char *deps[] = {
         "JSON-C@JSON-C",
         "lvm2@lvm2",
-        "popt-1@popt-1",
+        "rpm-software-management@popt",
         NULL,
 };
 
