@@ -46,7 +46,7 @@ build(void)
 int
 install(void)
 {
-        if (!cd("json-c-0.18")) return 0;
+        if (!cd("json-c-0.18/build")) return 0;
         return make("install");
 }
 
