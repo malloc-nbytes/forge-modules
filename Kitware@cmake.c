@@ -24,7 +24,7 @@ int
 build(void)
 {
         CMD("sed -i '/\"lib64\"/s/64//' Modules/GNUInstallDirs.cmake", return 0);
-        CMD("./bootstrap --prefix=/usr \
+        CMD("MAKEFLAGS=-j" FORGE_PREFERRED_MAKEFILE_JFLAGS " ./bootstrap --prefix=/usr \
             --system-libs        \
             --mandir=/share/man  \
             --no-system-jsoncpp  \
