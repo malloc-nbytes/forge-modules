@@ -5,7 +5,7 @@
 
 char *msgs[] = {
         "Additional word lists are available at " YELLOW "https://www.skullsecurity.org/wiki/Passwords" RESET,
-        "See this package's " YELLOW "dump()" RESET " function for how to install them.",
+        "See this package's " YELLOW "download()" RESET " and " YELLOW "install()" RESET " functions for how to install them.",
         NULL,
 };
 
@@ -19,8 +19,9 @@ char *
 download(void)
 {
         char *dir = git_clone("cracklib", "cracklib");
-        CD(dir, return NULL);
+        //CD(dir, return NULL);
         CMD("wget https://github.com/cracklib/cracklib/releases/download/v2.10.3/cracklib-words-2.10.3.xz", return 0);
+        cmd_builder("mv cracklib-words-2.10.3.xz", dir);
         return dir;
 }
 
