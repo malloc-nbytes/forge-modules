@@ -3,7 +3,7 @@
 // https://www.linuxfromscratch.org/blfs/view/stable/general/libgcrypt.html
 
 char *deps[] = {
-        "gpg@libgpg-error",
+        "gpg@libgpg-error-1.55.0",
         NULL,
 };
 

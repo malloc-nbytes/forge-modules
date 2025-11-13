@@ -3,7 +3,7 @@
 // https://www.linuxfromscratch.org/blfs/view/stable/general/libksba.html
 
 char *deps[] = {
-        "gpg@libgpg-error",
+        "gpg@libgpg-error-1.55.0",
         NULL,
 };
 
