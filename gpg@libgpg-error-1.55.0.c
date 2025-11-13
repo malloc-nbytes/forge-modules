@@ -28,7 +28,7 @@ int
 install(void)
 {
         if (!make("install")) return 0;
-        return cmd("install -v -m644 -D README /usr/share/doc/libgpg-error/README");
+        return cmd("install -v -m644 -D README /usr/share/doc/libgpg-error-1.55/README");
 }
 
 FORGE_GLOBAL pkg package = {

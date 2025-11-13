@@ -52,11 +52,12 @@ int
 install(void)
 {
         CD("build", return 0);
-        if (!make("install")) return 0;
-        CMD("install -v -m755 -d /usr/share/doc/gnupg-2.4.8/html", return 0);
-        CMD("install -v -m644 doc/gnupg_nochunks.html /usr/share/doc/gnupg-2.4.8/html/gnupg.html", return 0);
-        CMD("install -v -m644 ../doc/*.texi doc/gnupg.txt /usr/share/doc/gnupg-2.4.8", return 0);
-        return cmd("install -v -m644 doc/gnupg.html/* /usr/share/doc/gnupg-2.4.8/html");
+        return make("install");
+        /* if (!make("install")) return 0; */
+        /* CMD("install -v -m755 -d /usr/share/doc/gnupg-2.4.8/html", return 0); */
+        /* CMD("install -v -m644 doc/gnupg_nochunks.html /usr/share/doc/gnupg-2.4.8/html/gnupg.html", return 0); */
+        /* CMD("install -v -m644 ../doc/\*.texi doc/gnupg.txt /usr/share/doc/gnupg-2.4.8", return 0); */
+        /* return cmd("install -v -m644 doc/gnupg.html/\* /usr/share/doc/gnupg-2.4.8/html"); */
 }
 
 FORGE_GLOBAL pkg package = {

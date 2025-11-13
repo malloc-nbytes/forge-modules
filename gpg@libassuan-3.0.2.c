@@ -35,11 +35,12 @@ build(void)
 int
 install(void)
 {
-        if (!make("install")) return 0;
-        CMD("install -v -dm755 /usr/share/doc/libassuan-3.0.2/html", return 0);
-        CMD("install -v -m644 doc/assuan.html/* /usr/share/doc/libassuan-3.0.2/html", return 0);
-        CMD("install -v -m644 doc/assuan_nochunks.html /usr/share/doc/libassuan-3.0.2", return 0);
-        return cmd("install -v -m644 doc/assuan.{txt,texi} /usr/share/doc/libassuan-3.0.2");
+        return make("install");
+        /* if (!make("install")) return 0; */
+        /* CMD("install -v -dm755 /usr/share/doc/libassuan-3.0.2/html", return 0); */
+        /* CMD("install -v -m644 doc/assuan.html/\* /usr/share/doc/libassuan-3.0.2/html", return 0); */
+        /* CMD("install -v -m644 doc/assuan_nochunks.html /usr/share/doc/libassuan-3.0.2", return 0); */
+        /* return cmd("install -v -m644 doc/assuan.{txt,texi} /usr/share/doc/libassuan-3.0.2"); */
 }
 
 FORGE_GLOBAL pkg package = {

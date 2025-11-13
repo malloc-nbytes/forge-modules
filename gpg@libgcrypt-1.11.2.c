@@ -35,13 +35,14 @@ build(void)
 int
 install(void)
 {
-        if (!make("install")) return 0;
-        CMD("install -v -dm755 /usr/share/doc/libgcrypt-1.11.2", return 0);
-        CMD("install -v -m644 README doc/{README.apichanges,fips*,libgcrypt*} /usr/share/doc/libgcrypt-1.11.2", return 0);
-        CMD("install -v -dm755 /usr/share/doc/libgcrypt-1.11.2/html", return 0);
-        CMD("install -v -m644 doc/gcrypt.html/* /usr/share/doc/libgcrypt-1.11.2/html", return 0);
-        CMD("install -v -m644 doc/gcrypt_nochunks.html /usr/share/doc/libgcrypt-1.11.2", return 0);
-        return cmd("install -v -m644 doc/gcrypt.{txt,texi} /usr/share/doc/libgcrypt-1.11.2");
+        return make("install");
+        /* if (!make("install")) return 0; */
+        /* CMD("install -v -dm755 /usr/share/doc/libgcrypt-1.11.2", return 0); */
+        /* CMD("install -v -m644 README doc/{README.apichanges,fips*,libgcrypt*} /usr/share/doc/libgcrypt-1.11.2", return 0); */
+        /* CMD("install -v -dm755 /usr/share/doc/libgcrypt-1.11.2/html", return 0); */
+        /* CMD("install -v -m644 doc/gcrypt.html/\* /usr/share/doc/libgcrypt-1.11.2/html", return 0); */
+        /* CMD("install -v -m644 doc/gcrypt_nochunks.html /usr/share/doc/libgcrypt-1.11.2", return 0); */
+        /* return cmd("install -v -m644 doc/gcrypt.{txt,texi} /usr/share/doc/libgcrypt-1.11.2"); */
 }
 
 FORGE_GLOBAL pkg package = {
