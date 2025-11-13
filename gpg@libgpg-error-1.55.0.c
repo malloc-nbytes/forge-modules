@@ -2,20 +2,25 @@
 
 // https://www.linuxfromscratch.org/blfs/view/stable/general/libgpg-error.html
 
-char *getname(void)  { return "gpg@libgpg-error"; }
-char *getver(void)   { return "rolling"; }
+char *getname(void)  { return "gpg@libgpg-error-1.55.0"; }
+char *getver(void)   { return "1.55.0"; }
 char *getdesc(void)  { return "Defines common error values for all GnuPG components"; }
-char *getweb(void)   { return "https://github.com/gpg/libgpg-error"; }
+char *getweb(void)   { return "https://www.gnupg.org/ftp/gcrypt/libgpg-error"; }
 
 char *
 download(void)
 {
-        return git_clone("gpg", "libgpg-error");
+        CMD("wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.55.tar.bz2",
+            return NULL);
+        CMD("tar -vxf libgpg-error-1.55.tar.bz2", return NULL);
+        CMD("rm libgpg-error-1.55.tar.bz2", return NULL);
+        return "libgpg-error-1.55";
 }
 
 int
 build(void)
 {
+        CMD("autoreconf -iv", return 0);
         CMD("./configure --prefix=/usr", return 0);
         return make(NULL);
 }
