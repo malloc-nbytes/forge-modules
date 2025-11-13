@@ -4,7 +4,7 @@ char *deps[] = {"Kitware@cmake", NULL};
 
 char **getdeps(void) { return deps; }
 char *getname(void) { return "malloc-nbytes@earl"; }
-char *getver(void)  { return "0.9.7"; }
+char *getver(void)  { return "rolling"; }
 char *getdesc(void) { return "A scripting language to replace BASH"; }
 char *getweb(void)  { return "https://www.github.com/malloc-nbytes/earl.git/"; }
 

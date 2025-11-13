@@ -1,7 +1,7 @@
 #include <forge/forge.h>
 
 char *getname(void)  { return "malloc-nbytes@ampire"; }
-char *getver(void)   { return "0.1.5"; }
+char *getver(void)   { return "rolling"; }
 char *getdesc(void)  { return "A music player in the terminal"; }
 char *getweb(void)   { return "https://www.github.com/malloc-nbytes/ampire.git/"; }
 

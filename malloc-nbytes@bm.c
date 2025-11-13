@@ -1,7 +1,7 @@
 #include <forge/forge.h>
 
 char *getname(void) { return "malloc-nbytes@bm"; }
-char *getver(void)  { return "1.0.0"; }
+char *getver(void)  { return "rolling"; }
 char *getdesc(void) { return "Bookmark directories in the terminal"; }
 char *getweb(void)  { return "https://www.github.com/malloc-nbytes/bm.git/"; }
 

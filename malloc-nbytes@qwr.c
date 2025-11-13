@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 char *getname(void) { return "malloc-nbytes@qwr"; }
-char *getver(void)  { return "1.0.0"; }
+char *getver(void)  { return "rolling"; }
 char *getdesc(void) { return "A qemu wrapper for managing VMs"; }
 char *getweb(void)  { return "https://www.github.com/malloc-nbytes/qwr.git/"; }
 

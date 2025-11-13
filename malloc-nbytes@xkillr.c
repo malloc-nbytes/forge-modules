@@ -1,7 +1,7 @@
 #include <forge/forge.h>
 
 char *getname(void) { return "malloc-nbytes@xkillr"; }
-char *getver(void)  { return "1.0.0"; }
+char *getver(void)  { return "rolling"; }
 char *getdesc(void) { return "Kill processes"; }
 char *getweb(void)  { return "https://www.github.com/malloc-nbytes/xkillr.git/"; }
 

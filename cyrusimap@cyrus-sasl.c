@@ -4,7 +4,7 @@
 
 // https://www.linuxfromscratch.org/blfs/view/stable/postlfs/cyrus-sasl.html
 
-// recommended: lmdb-0.9.33
+// rebuild: OpenLDAP@OpenLDAP-2.6.10
 
 char *msgs[] = {
         "See https://www.cyrusimap.org/sasl/sasl/sysadmin.html for information on what to include in the application configuration files.",
