@@ -20,7 +20,6 @@ download(void)
 int
 build(void)
 {
-        CMD("autoreconf -iv", return 0);
         CMD("./configure --prefix=/usr", return 0);
         return make(NULL);
 }
