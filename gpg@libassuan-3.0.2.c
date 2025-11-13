@@ -27,9 +27,9 @@ build(void)
 {
         CMD("./configure --prefix=/usr", return 0);
         if (!make(NULL)) return 0;
-        CMD("make -C doc html", return 0);
-        CMD("makeinfo --html --no-split -o doc/assuan_nochunks.html doc/assuan.texi", return 0);
-        return cmd("makeinfo --plaintext -o doc/assuan.txt doc/assuan.texi");
+        /* CMD("make -C doc html", return 0); */
+        /* CMD("makeinfo --html --no-split -o doc/assuan_nochunks.html doc/assuan.texi", return 0); */
+        /* return cmd("makeinfo --plaintext -o doc/assuan.txt doc/assuan.texi"); */
 }
 
 int

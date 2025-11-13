@@ -26,10 +26,10 @@ int
 build(void)
 {
         CMD("./configure --prefix=/usr", return 0);
-        if (!make(NULL)) return 0;
-        CMD("make -C doc html", return 0);
-        CMD("makeinfo --html --no-split -o doc/gcrypt_nochunks.html doc/gcrypt.texi", return 0);
-        return cmd("makeinfo --plaintext -o doc/gcrypt.txt doc/gcrypt.texi");
+        return make(NULL);
+        /* CMD("make -C doc html", return 0); */
+        /* CMD("makeinfo --html --no-split -o doc/gcrypt_nochunks.html doc/gcrypt.texi", return 0); */
+        /* return cmd("makeinfo --plaintext -o doc/gcrypt.txt doc/gcrypt.texi"); */
 }
 
 int

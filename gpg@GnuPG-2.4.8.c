@@ -42,10 +42,10 @@ build(void)
              --localstatedir=/var              \
              --sysconfdir=/etc                 \
              --docdir=/usr/share/doc/gnupg-2.4.8", return 0);
-        if (!make(NULL)) return 0;
-        CMD("makeinfo --html --no-split -I doc -o doc/gnupg_nochunks.html ../doc/gnupg.texi", return 0);
-        CMD("makeinfo --plaintext -I doc -o doc/gnupg.txt ../doc/gnupg.texi", return 0);
-        return cmd("make -C doc html");
+        return make(NULL);
+        /* CMD("makeinfo --html --no-split -I doc -o doc/gnupg_nochunks.html ../doc/gnupg.texi", return 0); */
+        /* CMD("makeinfo --plaintext -I doc -o doc/gnupg.txt ../doc/gnupg.texi", return 0); */
+        /* return cmd("make -C doc html"); */
 }
 
 int
