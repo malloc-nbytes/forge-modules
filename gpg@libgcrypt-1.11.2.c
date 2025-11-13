@@ -8,21 +8,23 @@ char *deps[] = {
 };
 
 char **getdeps(void) { return deps; }
-char *getname(void)  { return "gpg@libgcrypt"; }
-char *getver(void)   { return "rolling"; }
+char *getname(void)  { return "gpg@libgcrypt-1.11.2"; }
+char *getver(void)   { return "1.11.2"; }
 char *getdesc(void)  { return "General purpose crypto library based on the code used in GnuPG"; }
 char *getweb(void)   { return "https://github.com/gpg/libgcrypt"; }
 
 char *
 download(void)
 {
-        return git_clone("gpg", "libgcrypt");
+        CMD("wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.11.2.tar.bz2", return NULL);
+        CMD("tar -vxf libgcrypt-1.11.2.tar.bz2", return NULL);
+        CMD("rm libgcrypt-1.11.2.tar.bz2", return NULL);
+        return "libgcrypt-1.11.2";
 }
 
 int
 build(void)
 {
-        CMD("autoreconf -iv", return 0);
         CMD("./configure --prefix=/usr", return 0);
         if (!make(NULL)) return 0;
         CMD("make -C doc html", return 0);
@@ -34,12 +36,12 @@ int
 install(void)
 {
         if (!make("install")) return 0;
-        CMD("install -v -dm755 /usr/share/doc/libgcrypt", return 0);
-        CMD("install -v -m644 README doc/{README.apichanges,fips*,libgcrypt*} /usr/share/doc/libgcrypt", return 0);
-        CMD("install -v -dm755 /usr/share/doc/libgcrypt/html", return 0);
-        CMD("install -v -m644 doc/gcrypt.html/* /usr/share/doc/libgcrypt/html", return 0);
-        CMD("install -v -m644 doc/gcrypt_nochunks.html /usr/share/doc/libgcrypt", return 0);
-        return cmd("install -v -m644 doc/gcrypt.{txt,texi} /usr/share/doc/libgcrypt");
+        CMD("install -v -dm755 /usr/share/doc/libgcrypt-1.11.2", return 0);
+        CMD("install -v -m644 README doc/{README.apichanges,fips*,libgcrypt*} /usr/share/doc/libgcrypt-1.11.2", return 0);
+        CMD("install -v -dm755 /usr/share/doc/libgcrypt-1.11.2/html", return 0);
+        CMD("install -v -m644 doc/gcrypt.html/* /usr/share/doc/libgcrypt-1.11.2/html", return 0);
+        CMD("install -v -m644 doc/gcrypt_nochunks.html /usr/share/doc/libgcrypt-1.11.2", return 0);
+        return cmd("install -v -m644 doc/gcrypt.{txt,texi} /usr/share/doc/libgcrypt-1.11.2");
 }
 
 FORGE_GLOBAL pkg package = {
@@ -54,6 +56,6 @@ FORGE_GLOBAL pkg package = {
         .build           = build,
         .install         = install,
         .uninstall       = NULL,
-        .update          = forge_pkg_git_update,
-        .get_changes     = forge_pkg_git_pull,
+        .update          = forge_pkg_update_manual_check,
+        .get_changes     = forge_pkg_get_changes_redownload,
 };

@@ -8,21 +8,23 @@ char *deps[] = {
 };
 
 char **getdeps(void) { return deps; }
-char *getname(void)  { return "gpg@libassuan"; }
-char *getver(void)   { return "rolling"; }
+char *getname(void)  { return "gpg@libassuan-3.0.2"; }
+char *getver(void)   { return "3.0.2"; }
 char *getdesc(void)  { return "Inter process communication library"; }
 char *getweb(void)   { return "https://github.com/gpg/libassuan"; }
 
 char *
 download(void)
 {
-        return git_clone("gpg", "libassuan");
+        CMD("wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-3.0.2.tar.bz2", return NULL);
+        CMD("tar -vxf libassuan-3.0.2.tar.bz2", return NULL);
+        CMD("rm libassuan-3.0.2.tar.bz2", return NULL);
+        return "libassuan-3.0.2";
 }
 
 int
 build(void)
 {
-        CMD("autoreconf -iv", return 0);
         CMD("./configure --prefix=/usr", return 0);
         if (!make(NULL)) return 0;
         CMD("make -C doc html", return 0);
@@ -34,10 +36,10 @@ int
 install(void)
 {
         if (!make("install")) return 0;
-        CMD("install -v -dm755 /usr/share/doc/libassuan/html", return 0);
-        CMD("install -v -m644 doc/assuan.html/* /usr/share/doc/libassuan/html", return 0);
-        CMD("install -v -m644 doc/assuan_nochunks.html /usr/share/doc/libassuan", return 0);
-        return cmd("install -v -m644 doc/assuan.{txt,texi} /usr/share/doc/libassuan");
+        CMD("install -v -dm755 /usr/share/doc/libassuan-3.0.2/html", return 0);
+        CMD("install -v -m644 doc/assuan.html/* /usr/share/doc/libassuan-3.0.2/html", return 0);
+        CMD("install -v -m644 doc/assuan_nochunks.html /usr/share/doc/libassuan-3.0.2", return 0);
+        return cmd("install -v -m644 doc/assuan.{txt,texi} /usr/share/doc/libassuan-3.0.2");
 }
 
 FORGE_GLOBAL pkg package = {
@@ -52,6 +54,6 @@ FORGE_GLOBAL pkg package = {
         .build           = build,
         .install         = install,
         .uninstall       = NULL,
-        .update          = forge_pkg_git_update,
-        .get_changes     = forge_pkg_git_pull,
+        .update          = forge_pkg_update_manual_check,
+        .get_changes     = forge_pkg_get_changes_redownload,
 };
