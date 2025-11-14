@@ -32,7 +32,7 @@ int
 install(void)
 {
         if (!make("install")) return 0;
-        return cmd("install -vdm755 /etc/ssl/local");
+        return cmd("install -vdm755 $DESTDIR/etc/ssl/local");
 }
 
 FORGE_GLOBAL pkg package = {

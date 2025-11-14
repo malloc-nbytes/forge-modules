@@ -68,10 +68,10 @@ int
 install(void)
 {
         if (!make("install")) return 0;
-        CMD("install -v -dm755 /usr/share/doc/cyrus-sasl-2.1.28/html", return 0);
-        CMD("install -v -m644 saslauthd/LDAP_SASLAUTHD /usr/share/doc/cyrus-sasl-2.1.28", return 0);
-        CMD("install -v -m644  doc/legacy/*.html /usr/share/doc/cyrus-sasl-2.1.28/html", return 0);
-        return cmd("install -v -dm700 /var/lib/sasl");
+        CMD("install -v -dm755 $DESTDIR/usr/share/doc/cyrus-sasl-2.1.28/html", return 0);
+        CMD("install -v -m644 saslauthd/LDAP_SASLAUTHD $DESTDIR/usr/share/doc/cyrus-sasl-2.1.28", return 0);
+        CMD("install -v -m644  doc/legacy/*.html $DESTDIR/usr/share/doc/cyrus-sasl-2.1.28/html", return 0);
+        return cmd("install -v -dm700 $DESTDIR/var/lib/sasl");
 }
 
 FORGE_GLOBAL pkg package = {

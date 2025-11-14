@@ -37,7 +37,7 @@ int
 install(void)
 {
          CMD("ninja install", return 0);
-         return cmd("ln -sfv /usr/libexec/p11-kit/trust-extract-compat /usr/bin/update-ca-certificates");
+         return cmd("ln -sfv /usr/libexec/p11-kit/trust-extract-compat $DESTDIR/usr/bin/update-ca-certificates");
 
 }
 

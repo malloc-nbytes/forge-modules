@@ -10,11 +10,6 @@ char *msgs[] = {
         NULL,
 };
 
-char *sugg[] = {
-        "cyrusimap@cyrus-sasl",
-        NULL,
-};
-
 char *deps[] = {
         "cyrusimap@cyrus-sasl",
         NULL,
@@ -22,11 +17,17 @@ char *deps[] = {
 
 char **getdeps(void) { return deps; }
 char **getmsgs(void) { return msgs; }
-char **getsugg(void) { return sugg; }
 char *getname(void)  { return "OpenLDAP@OpenLDAP-2.6.10"; }
 char *getver(void)   { return "2.6.10"; }
 char *getdesc(void)  { return "Implementation of the Lightweight Directory Access Protocol"; }
 char *getweb(void)   { return "https://www.openldap.org/software/download/OpenLDAP/openldap-release/"; }
+
+static void
+deluser(void)
+{
+        (void)cmd("userdel -r ldap 2>/dev/null");
+        (void)cmd("groupdel ldap 2>/dev/null");
+}
 
 char *
 download(void)
@@ -74,22 +75,25 @@ build(void)
         return make(NULL);
 
  bad:
-        (void)cmd("userdel -r ldap");
-        (void)cmd("groupdel ldap");
+        deluser();
         return 0;
 }
 
 int
 install(void)
 {
-        if (!make("install")) return 0;
-        CMD("sed -e \"s/\\.la/.so/\" -i /etc/openldap/slapd.{conf,ldif}{,.default}", return 0);
-        CMD("install -v -dm700 -o ldap -g ldap /var/lib/openldap", return 0);
-        CMD("install -v -dm700 -o ldap -g ldap /etc/openldap/slapd.d", return 0);
-        CMD("chmod -v 640 /etc/openldap/slapd.{conf,ldif}", return 0);
-        CMD("chown -v root:ldap /etc/openldap/slapd.{conf,ldif}", return 0);
-        CMD("install -v -dm755 /usr/share/doc/openldap-2.6.10", return 0);
-        return cmd("cp -vfr doc/{drafts,rfc,guide} /usr/share/doc/openldap-2.6.10");
+        if (!make("install")) goto bad;
+        CMD("sed -e \"s/\\.la/.so/\" -i $DESTDIR/etc/openldap/slapd.{conf,ldif}{,.default}", goto bad);
+        CMD("install -v -dm700 -o ldap -g ldap $DESTDIR/var/lib/openldap", goto bad);
+        CMD("install -v -dm700 -o ldap -g ldap $DESTDIR/etc/openldap/slapd.d", goto bad);
+        CMD("chmod -v 640 $DESTDIR/etc/openldap/slapd.{conf,ldif}", goto bad);
+        CMD("chown -v root:ldap $DESTDIR/etc/openldap/slapd.{conf,ldif}", goto bad);
+        CMD("install -v -dm755 $DESTDIR/usr/share/doc/openldap-2.6.10", goto bad);
+        return cmd("cp -vfr doc/{drafts,rfc,guide} $DESTDIR/usr/share/doc/openldap-2.6.10");
+
+ bad:
+        deluser();
+        return 0;
 }
 
 FORGE_GLOBAL pkg package = {
@@ -100,7 +104,7 @@ FORGE_GLOBAL pkg package = {
         .deps            = getdeps,
         .msgs            = getmsgs,
         .rebuild         = NULL,
-        .suggested       = getsugg,
+        .suggested       = NULL,
         .download        = download,
         .build           = build,
         .install         = install,

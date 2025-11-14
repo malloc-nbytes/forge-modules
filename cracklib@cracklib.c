@@ -59,11 +59,11 @@ install(void)
 
         CD("src", return 0);
         if (!make("install")) return 0;
-        CMD("xzcat ../cracklib-words-2.10.3.xz > /usr/share/dict/cracklib-words", return 0);
-        CMD("ln -v -sf cracklib-words /usr/share/dict/words", return 0);
-        CMD("echo $(hostname) >> /usr/share/dict/cracklib-extra-words", return 0);
-        CMD("install -v -m755 -d /usr/lib/cracklib", return 0);
-        return cmd(FORGE_PREFERRED_INSTALL_PREFIX "/bin/create-cracklib-dict /usr/share/dict/cracklib-words /usr/share/dict/cracklib-extra-words");
+        CMD("xzcat ../cracklib-words-2.10.3.xz > $DESTDIR/usr/share/dict/cracklib-words", return 0);
+        CMD("ln -v -sf cracklib-words $DESTDIR/usr/share/dict/words", return 0);
+        CMD("echo $(hostname) >> $DESTDIR/usr/share/dict/cracklib-extra-words", return 0);
+        CMD("install -v -m755 -d $DESTDIR/usr/lib/cracklib", return 0);
+        return cmd("$DESTDIR/bin/create-cracklib-dict /usr/share/dict/cracklib-words /usr/share/dict/cracklib-extra-words");
 }
 
 FORGE_GLOBAL pkg package = {

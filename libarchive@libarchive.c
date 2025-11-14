@@ -23,7 +23,7 @@ int
 install(void)
 {
         if (!make("install")) return 0;
-        return cmd("ln -sfv bsdunzip /usr/bin/unzip");
+        return cmd("ln -sfv bsdunzip $DESTDIR/usr/bin/unzip");
 }
 
 FORGE_GLOBAL pkg package = {
