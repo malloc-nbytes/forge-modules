@@ -47,10 +47,10 @@ build(void)
         CMD("groupadd -g 83 ldap", return 0);
         CMD("useradd -c \"OpenLDAP Daemon Owner\"  \
          -d /var/lib/openldap -u 83                \
-         -g ldap -s /bin/false ldap", return 0);
+         -g ldap -s /bin/false ldap", goto bad);
 
-        CMD("patch -Np1 -i ../openldap-2.6.10-consolidated-1.patch", return 0);
-        CMD("autoconf", return 0);
+        CMD("patch -Np1 -i ../openldap-2.6.10-consolidated-1.patch", goto bad);
+        CMD("autoconf", goto bad);
         CMD("./configure --prefix=/usr         \
             --sysconfdir=/etc                  \
             --localstatedir=/var               \
@@ -69,9 +69,13 @@ build(void)
             --enable-backends=mod              \
             --disable-sql                      \
             --disable-wt                       \
-            --enable-overlays=mod", return 0);
-        CMD("make depend -j" FORGE_PREFERRED_MAKEFILE_JFLAGS, return 0);
+            --enable-overlays=mod", goto bad);
+        CMD("make depend -j" FORGE_PREFERRED_MAKEFILE_JFLAGS, goto bad);
         return make(NULL);
+
+ bad:
+        (void)cmd("groupdel ldap");
+        return 0;
 }
 
 int
