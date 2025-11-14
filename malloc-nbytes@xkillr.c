@@ -34,6 +34,7 @@ FORGE_GLOBAL pkg package = {
         .web             = getweb,
         .msgs            = NULL,
         .suggested       = NULL,
+        .rebuild         = NULL,
         .deps            = NULL,
         .download        = download,
         .build           = build,

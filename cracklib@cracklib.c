@@ -5,12 +5,18 @@
 // TODO: rebuild shadow
 // https://www.linuxfromscratch.org/blfs/view/stable/postlfs/cracklib.html
 
+char *rebuilds[] = {
+        "shadow-maint@shadow",
+        NULL,
+};
+
 char *msgs[] = {
         "Additional word lists are available at " YELLOW "https://www.skullsecurity.org/wiki/Passwords" RESET,
         "See this package's " YELLOW "download()" RESET " and " YELLOW "install()" RESET " functions for how to install them.",
         NULL,
 };
 
+char **getrebuilds(void) { return rebuilds; }
 char **getmsgs(void) { return msgs; }
 char *getname(void)  { return "cracklib@cracklib"; }
 char *getver(void)   { return "rolling"; }
@@ -68,6 +74,7 @@ FORGE_GLOBAL pkg package = {
         .deps            = NULL,
         .msgs            = getmsgs,
         .suggested       = NULL,
+        .rebuild         = NULL,
         .download        = download,
         .build           = build,
         .install         = install,

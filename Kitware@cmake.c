@@ -48,6 +48,7 @@ FORGE_GLOBAL pkg package = {
         .deps            = getdeps,
         .msgs            = NULL,
         .suggested       = NULL,
+        .rebuild         = NULL,
         .download        = download,
         .build           = build,
         .install         = install,
