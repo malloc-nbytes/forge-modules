@@ -74,6 +74,7 @@ build(void)
         return make(NULL);
 
  bad:
+        (void)cmd("userdel -r ldap");
         (void)cmd("groupdel ldap");
         return 0;
 }
