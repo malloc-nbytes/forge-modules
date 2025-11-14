@@ -15,6 +15,12 @@ char *sugg[] = {
         NULL,
 };
 
+char *deps[] = {
+        "cyrusimap@cyrus-sasl",
+        NULL,
+};
+
+char **getdeps(void) { return deps; }
 char **getmsgs(void) { return msgs; }
 char **getsugg(void) { return sugg; }
 char *getname(void)  { return "OpenLDAP@OpenLDAP-2.6.10"; }
@@ -86,7 +92,7 @@ FORGE_GLOBAL pkg package = {
         .ver             = getver,
         .desc            = getdesc,
         .web             = getweb,
-        .deps            = NULL,
+        .deps            = getdeps,
         .msgs            = getmsgs,
         .rebuild         = NULL,
         .suggested       = getsugg,
