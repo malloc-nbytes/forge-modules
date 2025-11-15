@@ -2,6 +2,8 @@
 
 // https://www.linuxfromscratch.org/blfs/view/stable/postlfs/iptables.html
 
+// TODO: rebuild -> libpcap-1.10.5 (required for BPF compiler or nfsynproxy support), bpf-utils (required for Berkeley Packet Filter support), libnfnetlink (required for connlabel support), libnetfilter_conntrack (required for connlabel support), and nftables 
+
 char *msgs[] = {
         "[*] Networking support --->                                                [NET]",
         "  Networking options --->",

@@ -49,6 +49,6 @@ FORGE_GLOBAL pkg package = {
         .build           = build,
         .install         = install,
         .uninstall       = NULL,
-        .update          = forge_pkg_update_manual_check,
-        .get_changes     = forge_pkg_get_changes_redownload,
+        .update          = forge_pkg_git_update,
+        .get_changes     = forge_pkg_git_pull,
 };
