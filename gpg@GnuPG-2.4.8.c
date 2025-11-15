@@ -17,6 +17,12 @@ char *sugg[] = {
         NULL,
 };
 
+char *rebuild[] = {
+        "gpg@gpgme",
+        NULL,
+};
+
+char **getrebuild(void) { return rebuild; }
 char **getdeps(void) { return deps; }
 char **getsugg(void) { return sugg; }
 char *getname(void)  { return "gpg@GnuPG-2.4.8"; }
@@ -68,7 +74,7 @@ FORGE_GLOBAL pkg package = {
         .deps            = getdeps,
         .msgs            = NULL,
         .suggested       = getsugg,
-        .rebuild         = NULL,
+        .rebuild         = getrebuild,
         .download        = download,
         .build           = build,
         .install         = install,
