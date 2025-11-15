@@ -34,12 +34,7 @@ int
 install(void)
 {
 
-        if (!make("install")) return 0;
-        CMD("find docs \\( -name Makefile\\* -o  \
-             -name \\*.1       -o  \
-             -name \\*.3       -o  \
-             -name CMakeLists.txt \\) -delete", return 0);
-        return cmd("cp -v -R docs -T $DESTDIR/usr/share/doc/curl-8.15.0");
+        return make("install"));
 }
 
 FORGE_GLOBAL pkg package = {
