@@ -42,6 +42,8 @@ download(void)
 int
 build(void)
 {
+        deluser();
+
         CMD("wget https://www.linuxfromscratch.org/patches/blfs/12.4/openldap-2.6.10-consolidated-1.patch -P ..",
             return 0);
 
@@ -89,6 +91,7 @@ install(void)
         CMD("chmod -v 640 $DESTDIR/etc/openldap/slapd.{conf,ldif}", goto bad);
         CMD("chown -v root:ldap $DESTDIR/etc/openldap/slapd.{conf,ldif}", goto bad);
         CMD("install -v -dm755 $DESTDIR/usr/share/doc/openldap-2.6.10", goto bad);
+        CMD("usermod -d /var/lib/openldap ldap", goto bad);
         return cmd("cp -vfr doc/{drafts,rfc,guide} $DESTDIR/usr/share/doc/openldap-2.6.10");
 
  bad:
