@@ -2,6 +2,9 @@
 
 // https://www.linuxfromscratch.org/blfs/view/stable/general/libtasn1.html
 
+char *rebuild[] = {"GNU@gnuTLS-3.8.10", NULL};
+
+char **getrebuild(void) { return rebuild; }
 char *getname(void)  { return "libtasn1@libtasn1"; }
 char *getver(void)   { return "4.20.0"; }
 char *getdesc(void)  { return "Portable C library that encodes and decodes DER/BER data"; }
@@ -48,7 +51,7 @@ FORGE_GLOBAL pkg package = {
         .deps            = NULL,
         .msgs            = NULL,
         .suggested       = NULL,
-        .rebuild         = NULL,
+        .rebuild         = getrebuild,
         .download        = download,
         .build           = build,
         .install         = install,

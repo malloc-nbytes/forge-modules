@@ -3,7 +3,9 @@
 // https://www.linuxfromscratch.org/blfs/view/stable/postlfs/p11-kit.html
 
 char *sugg[] = {"libtasn1@libtasn1", NULL};
+char *rebuild[] = {"GNU@gnuTLS-3.8.10", NULL};
 
+char **getrebuild(void) { return rebuild; }
 char *getname(void)  { return "p11-glue@p11-kit"; }
 char *getver(void)   { return "rolling"; }
 char *getdesc(void)  { return "Provides a way to load and enumerate PKCS#11 modules"; }
@@ -49,7 +51,7 @@ FORGE_GLOBAL pkg package = {
         .deps            = NULL,
         .msgs            = NULL,
         .suggested       = NULL,
-        .rebuild         = NULL,
+        .rebuild         = getrebuild,
         .download        = download,
         .build           = build,
         .install         = install,

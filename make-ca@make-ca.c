@@ -4,6 +4,7 @@
 
 char *deps[] = {"p11-glue@p11-kit", "GNU@libtasn1", NULL};
 char *sugg[] = {"Mozilla@NSS", NULL};
+char *rebuild[] = {"GNU@gnuTLS-3.8.10", NULL};
 
 char *msgs[] = {
         "Be sure to run " YELLOW "/usr/sbin/make-ca -g" RESET,
@@ -17,6 +18,7 @@ char *msgs[] = {
         NULL,
 };
 
+char **getrebuild(void) { return rebuild; }
 char *getname(void)  { return "make-ca@make-ca"; }
 char *getver(void)   { return "rolling"; }
 char *getdesc(void)  { return "PKI setup script"; }
@@ -43,7 +45,7 @@ FORGE_GLOBAL pkg package = {
         .deps            = NULL,
         .msgs            = NULL,
         .suggested       = NULL,
-        .rebuild         = NULL,
+        .rebuild         = getrebuild,
         .download        = download,
         .build           = NULL,
         .install         = install,
