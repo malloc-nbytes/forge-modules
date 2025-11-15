@@ -16,7 +16,7 @@ char *getweb(void)   { return "https://sourceforge.net/projects/liboauth/files/"
 char *
 download(void)
 {
-        CMD("wget https://downloads.sourceforge.net/liboauth/", return NULL);
+        CMD("wget https://downloads.sourceforge.net/liboauth/liboauth-1.0.3.tar.gz", return 0);
         CMD("tar -vxf liboauth-1.0.3.tar.gz", return NULL);
         CMD("rm liboauth-1.0.3.tar.gz", return NULL);
         return "liboauth-1.0.3";
