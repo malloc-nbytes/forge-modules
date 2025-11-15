@@ -4,16 +4,11 @@
 
 char *deps[] = {
         "gpg@libassuan-3.0.2",
-        NULL,
-};
-
-char *sugg[] = {
         "gpg@GnuPG-2.4.8",
         NULL,
 };
 
 char **getdeps(void) { return deps; }
-char **getsugg(void) { return sugg; }
 char *getname(void)  { return "gpg@gpgme"; }
 char *getver(void)   { return "rolling"; }
 char *getdesc(void)  { return "Cryptography support to be added to a program"; }
@@ -49,7 +44,7 @@ FORGE_GLOBAL pkg package = {
         .web             = getweb,
         .deps            = getdeps,
         .msgs            = NULL,
-        .suggested       = getsugg,
+        .suggested       = NULL,
         .rebuild         = NULL,
         .download        = download,
         .build           = build,

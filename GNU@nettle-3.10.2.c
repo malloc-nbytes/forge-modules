@@ -12,9 +12,6 @@ char *getweb(void)   { return "https://ftp.gnu.org/gnu/nettle"; }
 char *
 download(void)
 {
-        printf(RED "GNU@nettle-3.10.2 IS CURRENTLY BROKEN" RESET "\n");
-        return 0;
-
         CMD("wget https://ftp.gnu.org/gnu/nettle/nettle-3.10.2.tar.gz", return NULL);
         CMD("tar -vxf nettle-3.10.2.tar.gz", return NULL);
         CMD("rm nettle-3.10.2.tar.gz", return NULL);
@@ -24,9 +21,6 @@ download(void)
 int
 build(void)
 {
-        printf(RED "GNU@nettle-3.10.2 IS CURRENTLY BROKEN" RESET "\n");
-        return 0;
-
         CMD("./configure --prefix=/usr --disable-static", return 0);
         return make(NULL);
 }
@@ -34,9 +28,6 @@ build(void)
 int
 install(void)
 {
-        printf(RED "GNU@nettle-3.10.2 IS CURRENTLY BROKEN" RESET "\n");
-        return 0;
-
         if (!make("install")) return 0;
         (void)cmd("chmod -v 755 $DESTDIR/usr/lib/lib{hogweed,nettle}.so");
         return 1;
