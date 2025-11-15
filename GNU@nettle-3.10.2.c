@@ -19,7 +19,7 @@ download(void)
 int
 build(void)
 {
-        CMD("./configure --prefix=/usr --disable-static", return 0);
+        CMD("./configure --prefix=/usr --libdir=/usr/lib --disable-static", return 0);
         return make(NULL);
 }
 
