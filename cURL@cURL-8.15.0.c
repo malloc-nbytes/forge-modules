@@ -5,6 +5,12 @@ char *deps[] = {
         NULL,
 };
 
+char *rebuild[] = {
+        "x42@liboauth-1.0.3",
+        NULL,
+};
+
+char **getrebuild(void) { return rebuild; }
 char **getdeps(void) { return deps; }
 char *getname(void)  { return "cURL@cURL-8.15.0"; }
 char *getver(void)   { return "8.15.0"; }
@@ -45,7 +51,7 @@ FORGE_GLOBAL pkg package = {
         .deps            = getdeps,
         .msgs            = NULL,
         .suggested       = NULL,
-        .rebuild         = NULL,
+        .rebuild         = getrebuild,
         .download        = download,
         .build           = build,
         .install         = install,
