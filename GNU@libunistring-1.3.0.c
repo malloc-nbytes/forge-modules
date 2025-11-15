@@ -13,7 +13,7 @@ download(void)
 {
         CMD("wget https://ftp.gnu.org/gnu/libunistring/libunistring-1.3.tar.xz", return NULL);
         CMD("tar -vxf libunistring-1.3.tar.xz", return NULL);
-        CMD("libunistring-1.3.tar.xz", return NULL);
+        CMD("rm libunistring-1.3.tar.xz", return NULL);
         return "libunistring-1.3";
 }
 
