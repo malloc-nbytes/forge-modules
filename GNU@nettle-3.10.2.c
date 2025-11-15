@@ -27,7 +27,7 @@ int
 install(void)
 {
         if (!make("install")) return 0;
-        CMD("chmod -v 755 $DESTDIR/usr/lib/lib{hogweed,nettle}.so", return 0);
+        (void)cmd("chmod -v 755 $DESTDIR/usr/lib/lib{hogweed,nettle}.so");
         CMD("install -v -m755 -d $DESTDIR/usr/share/doc/nettle-3.10.2", return 0);
         return cmd("install -v -m644 nettle.{html,pdf} $DESTDIR/usr/share/doc/nettle-3.10.2");
 }
