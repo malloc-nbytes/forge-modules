@@ -8,6 +8,11 @@ char *sugg[] = {
         NULL,
 };
 
+char *rebuild[] = {
+        "cURL@cURL-8.15.0",
+        NULL,
+};
+
 char **getsugg(void) { return sugg; }
 char *getname(void)  { return "rockdaboot@libpsl-0.21.5"; }
 char *getver(void)   { return "0.21.5"; }

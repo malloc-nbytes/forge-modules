@@ -4,7 +4,7 @@
 
 char *deps[] = {"p11-glue@p11-kit", "GNU@libtasn1", NULL};
 char *sugg[] = {"Mozilla@NSS", NULL};
-char *rebuild[] = {"GNU@gnuTLS-3.8.10", NULL};
+char *rebuild[] = {"GNU@gnuTLS-3.8.10", "cURL@cURL-8.15.0", NULL};
 
 char *msgs[] = {
         "Be sure to run " YELLOW "/usr/sbin/make-ca -g" RESET,
