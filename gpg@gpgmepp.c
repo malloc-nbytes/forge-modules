@@ -9,15 +9,15 @@ char *deps[] = {
 };
 
 char **getdeps(void) { return deps; }
-char *getname(void)  { return "KDE@gpgmepp"; }
+char *getname(void)  { return "gpg@gpgmepp"; }
 char *getver(void)   { return "rolling"; }
 char *getdesc(void)  { return "Provides a C++ wrapper to GNU@gpgmepp"; }
-char *getweb(void)   { return "https://github.com/KDE/gpgmepp"; }
+char *getweb(void)   { return "https://github.com/gpg/gpgmepp"; }
 
 char *
 download(void)
 {
-        return git_clone("KDE", "gpgmepp");
+        return git_clone("gpg", "gpgmepp");
 }
 
 int
