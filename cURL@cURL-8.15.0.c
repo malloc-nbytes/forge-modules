@@ -1,5 +1,11 @@
 #include <forge/forge.h>
 
+char *deps[] = {
+        "rockdaboot@libpsl-0.21.5",
+        NULL,
+};
+
+char **getdeps(void) { return deps; }
 char *getname(void)  { return "cURL@cURL-8.15.0"; }
 char *getver(void)   { return "8.15.0"; }
 char *getdesc(void)  { return "Library used for transferring files with URL syntax"; }
@@ -41,7 +47,7 @@ FORGE_GLOBAL pkg package = {
         .ver             = getver,
         .desc            = getdesc,
         .web             = getweb,
-        .deps            = NULL,
+        .deps            = getdeps,
         .msgs            = NULL,
         .suggested       = NULL,
         .rebuild         = NULL,
