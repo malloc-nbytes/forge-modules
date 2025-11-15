@@ -3,10 +3,10 @@
 char *rebuild[] = {"GNU@gnuTLS-3.8.10", NULL};
 
 char **getrebuild(void) { return rebuild; }
-char *getname(void)  { return "GNU@gnuTLS-3.8.10"; }
-char *getver(void)   { return "3.8.10"; }
-char *getdesc(void)  { return "Tools which provide a secure layer over a reliable transport layer"; }
-char *getweb(void)   { return "https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8"; }
+char *getname(void)  { return "GNU@libunistring-1.3.0"; }
+char *getver(void)   { return "1.3.0"; }
+char *getdesc(void)  { return "Functions for manipulating Unicode strings and for manipulating C strings"; }
+char *getweb(void)   { return "https://ftp.gnu.org/gnu/libunistring"; }
 
 char *
 download(void)
