@@ -27,7 +27,7 @@ build(void)
         printf(RED "GNU@nettle-3.10.2 IS CURRENTLY BROKEN" RESET "\n");
         return 0;
 
-        CMD("./configure --prefix=/usr --libdir=/usr/lib --disable-static", return 0);
+        CMD("./configure --prefix=/usr --disable-static", return 0);
         return make(NULL);
 }
 

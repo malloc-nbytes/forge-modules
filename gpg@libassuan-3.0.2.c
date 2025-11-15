@@ -7,6 +7,11 @@ char *deps[] = {
         NULL,
 };
 
+char *rebuild[] = {
+        "gpg@GnuPG-2.4.8",
+        NULL,
+};
+
 char **getrebuild(void) { return rebuild; }
 char **getdeps(void) { return deps; }
 char *getname(void)  { return "gpg@libassuan-3.0.2"; }
