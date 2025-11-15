@@ -7,6 +7,12 @@ char *sugg[] = {
         NULL,
 };
 
+char *rebuild[] = {
+        "rockdaboot@libpsl-0.21.5",
+        NULL,
+};
+
+char **getrebuild(void) { return rebuild; }
 char **getsugg(void) { return sugg; }
 char *getname(void)  { return "GNU@libidn2-2.3.8"; }
 char *getver(void)   { return "2.3.8"; }
@@ -43,7 +49,7 @@ FORGE_GLOBAL pkg package = {
         .deps            = NULL,
         .msgs            = NULL,
         .suggested       = getsugg,
-        .rebuild         = NULL,
+        .rebuild         = getrebuild,
         .download        = download,
         .build           = build,
         .install         = install,

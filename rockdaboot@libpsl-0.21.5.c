@@ -9,15 +9,18 @@ char *sugg[] = {
 };
 
 char **getsugg(void) { return sugg; }
-char *getname(void)  { return "rockdaboot@libpsl"; }
-char *getver(void)   { return "rolling"; }
+char *getname(void)  { return "rockdaboot@libpsl-0.21.5"; }
+char *getver(void)   { return "0.21.5"; }
 char *getdesc(void)  { return "C library for the Public Suffix List"; }
 char *getweb(void)   { return "https://github.com/rockdaboot/libpsl"; }
 
 char *
 download(void)
 {
-        return git_clone("rockdaboot", "libpsl");
+        CMD("wget https://github.com/rockdaboot/libpsl/releases/download/0.21.5/libpsl-0.21.5.tar.gz", return NULL);
+        CMD("tar -vxf libpsl-0.21.5.tar.gz", return NULL);
+        CMD("rm libpsl-0.21.5.tar.gz", return NULL);
+        return "libpsl-0.21.5";
 }
 
 int

@@ -1,6 +1,6 @@
 #include <forge/forge.h>
 
-char *rebuild[] = {"GNU@gnuTLS-3.8.10", NULL};
+char *rebuild[] = {"GNU@gnuTLS-3.8.10", "rockdaboot@libpsl-0.21.5", NULL};
 
 char **getrebuild(void) { return rebuild; }
 char *getname(void)  { return "GNU@libunistring-1.3.0"; }
