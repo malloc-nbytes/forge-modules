@@ -34,7 +34,7 @@ int
 install(void)
 {
 
-        return make("install"));
+        return make("install");
 }
 
 FORGE_GLOBAL pkg package = {
