@@ -32,6 +32,7 @@ build(void)
 int
 install(void)
 {
+        CD("build", return 0);
         return make("install");
 }
 
