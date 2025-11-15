@@ -23,7 +23,7 @@ download(void)
 int
 build(void)
 {
-        if (!mkdir("build")) return 0;
+        if (!mkdirp("build")) return 0;
         CD("build", return 0);
         CMD("meson setup --prefix=/usr --buildtype=release", return 0);
         return cmd("ninja");
