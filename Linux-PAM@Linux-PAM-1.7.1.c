@@ -21,6 +21,12 @@ char *msgs[] = {
         NULL,
 };
 
+char *rebuild[] = {
+        "Linux@libcap-2.76.0",
+        NULL,
+};
+
+char **getrebuild(void) { return rebuild; }
 char **getmsgs(void) { return msgs; }
 char *getname(void)  { return "Linux-PAM@Linux-PAM-1.7.1"; }
 char *getver(void)   { return "1.7.1"; }
@@ -88,7 +94,7 @@ FORGE_GLOBAL pkg package = {
         .deps            = NULL,
         .msgs            = getmsgs,
         .suggested       = NULL,
-        .rebuild         = NULL,
+        .rebuild         = getrebuild,
         .download        = download,
         .build           = build,
         .install         = install,
