@@ -7,6 +7,19 @@ char *deps[] = {
         NULL,
 };
 
+char *msgs[] = {
+        "In order to configure libpcap, do the following:",
+        "    " YELLOW "mv -v /etc/pam.d/system-auth{,.bak}" RESET,
+        "    " YELLOW "cat > /etc/pam.d/system-auth << \"EOF\" &&" RESET,
+        "    " YELLOW "# Begin /etc/pam.d/system-auth" RESET,
+        "",
+        "    " YELLOW "auth      optional    pam_cap.so" RESET,
+        "    " YELLOW "EOF" RESET,
+        "    " YELLOW "tail -n +3 /etc/pam.d/system-auth.bak >> /etc/pam.d/system-auth" RESET,
+        NULL,
+};
+
+char **getmsgs(void) { return msgs; }
 char **getdeps(void) { return deps; }
 char *getname(void)  { return "Linux@libcap-2.76.0"; }
 char *getver(void)   { return "2.76.0"; }
@@ -43,7 +56,7 @@ FORGE_GLOBAL pkg package = {
         .desc            = getdesc,
         .web             = getweb,
         .deps            = getdeps,
-        .msgs            = NULL,
+        .msgs            = getmsgs,
         .suggested       = NULL,
         .rebuild         = NULL,
         .download        = download,
