@@ -6,7 +6,8 @@
 // https://www.linuxfromscratch.org/blfs/view/stable/postlfs/cracklib.html
 
 char *rebuilds[] = {
-        "shadow-maint@shadow",
+        /* "shadow-maint@shadow", */
+        "libpwquality@libpwquality-1.4.5",
         NULL,
 };
 

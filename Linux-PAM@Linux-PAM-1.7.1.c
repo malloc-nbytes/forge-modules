@@ -23,6 +23,7 @@ char *msgs[] = {
 
 char *rebuild[] = {
         "Linux@libcap-2.76.0",
+        "libpwquality@libpwquality-1.4.5",
         NULL,
 };
 
