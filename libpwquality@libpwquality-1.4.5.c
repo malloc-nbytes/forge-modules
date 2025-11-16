@@ -38,7 +38,29 @@ int
 install(void)
 {
         if (!make("install")) return 0;
-        return cmd("pip3 install --root=$DESTDIR --no-index --find-links dist --no-user pwquality");
+        CMD("pip3 install --root=$DESTDIR --no-index --find-links dist --no-user pwquality", return 0);
+        CMD("mv $DSETDIR/etc/pam.d/system-password{,.orig}", return 0);
+        CMD("cat > $DESTDIR/etc/pam.d/system-password << \"EOF\" \n"
+            "# Begin /etc/pam.d/system-password \n"
+            " \n"
+            "# check new passwords for strength (man pam_pwquality) \n"
+            "password  required    pam_pwquality.so   authtok_type=UNIX retry=1 difok=1 \\ \n"
+            "                                         minlen=8 dcredit=0 ucredit=0      \\ \n"
+            "                                         lcredit=0 ocredit=0 minclass=1    \\ \n"
+            "                                         maxrepeat=0 maxsequence=0         \\ \n"
+            "                                         maxclassrepeat=0 gecoscheck=0     \\ \n"
+            "                                         dictcheck=1 usercheck=1           \\ \n"
+            "                                         enforcing=1 badwords=""           \\ \n"
+            "                                         dictpath=/usr/lib/cracklib/pw_dict \n"
+            " \n"
+            "# use yescrypt hash for encryption, use shadow, and try to use any \n"
+            "# previously defined authentication token (chosen password) set by any \n"
+            "# prior module. \n"
+            "password  required    pam_unix.so        yescrypt shadow try_first_pass \n"
+            " \n"
+            "# End /etc/pam.d/system-password \n"
+            "EOF", return 0);
+        return 1;
 }
 
 FORGE_GLOBAL pkg package = {
