@@ -22,6 +22,7 @@ build(void)
 {
         if (!mkdirp("build")) return 0;
         CD("build", return 0);
+        CMD("cmake -S .. -B .", return 0);
         return make(NULL);
 }
 
