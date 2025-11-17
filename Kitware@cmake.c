@@ -7,6 +7,13 @@ char *deps[] = {
         NULL,
 };
 
+char *rebuild[] = {
+        "malloc-nbytes@earl",
+        "malloc-nbytes@bless",
+        NULL,
+};
+
+char **getrebuild(void) { return rebuild; }
 char **getdeps(void) { return deps; }
 char *getname(void)  { return "Kitware@cmake"; }
 char *getver(void)   { return "rolling"; }
@@ -48,7 +55,7 @@ FORGE_GLOBAL pkg package = {
         .deps            = getdeps,
         .msgs            = NULL,
         .suggested       = NULL,
-        .rebuild         = NULL,
+        .rebuild         = getrebuild,
         .download        = download,
         .build           = build,
         .install         = install,
