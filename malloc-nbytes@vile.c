@@ -14,12 +14,14 @@ download(void)
 int
 build(void)
 {
+        CD("src", return 0);
         return cmd("cc -o vile $(find . -type f -name '*.c') -Iinclude/ -lforge");
 }
 
 int
 install(void)
 {
+        CD("src", return 0);
         return cmd("cp ./vile " FORGE_PREFERRED_INSTALL_PREFIX "/bin/vile");
 }
 
