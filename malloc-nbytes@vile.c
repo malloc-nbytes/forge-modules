@@ -14,7 +14,7 @@ download(void)
 int
 build(void)
 {
-        return cmd("cc -o vile $(find . -type f -name '*.c') -lforge");
+        return cmd("cc -o vile $(find . -type f -name '*.c') -Iinclude/ -lforge");
 }
 
 int
