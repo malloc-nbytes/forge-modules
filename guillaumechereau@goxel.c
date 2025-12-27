@@ -23,7 +23,7 @@ download(void)
 int
 build(void)
 {
-        return make(NULL);
+        return make("release");
 }
 
 int
