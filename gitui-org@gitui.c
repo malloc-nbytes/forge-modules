@@ -15,7 +15,7 @@ download(void)
 int
 build(void)
 {
-        CMD("cargo build --release", return 0);
+        return cmd("cargo build --release");
 }
 
 int
