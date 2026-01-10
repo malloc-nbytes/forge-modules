@@ -21,7 +21,9 @@ build(void)
 int
 install(void)
 {
-        return cmd("cargo install gitui --locked");
+        //return cmd("cargo install gitui --locked");
+        CMD("install -d " FORGE_PREFERRED_INSTALL_PREFIX "/bin", return 0);
+        return cmd("install -m 755 ./target/release/gitui " FORGE_PREFERRED_INSTALL_PREFIX "/bin/gitui");
 }
 
 FORGE_GLOBAL pkg package = {
