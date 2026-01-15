@@ -6,7 +6,7 @@
 #define GAPS    "01-dwm-fullgaps-6.4.diff"
 #define AWESOME "dwm-awesomebar-6.6.diff"
 
-char *getname(void)  { return "suckless@dwm-6.7.0"; }
+char *getname(void)  { return "suckless@dwm++-6.7.0"; }
 char *getver(void)   { return "6.7.0"; }
 char *getdesc(void)  { return "DWM with some patches"; }
 char *getweb(void)   { return "https://dwm.suckless.org/"; }
