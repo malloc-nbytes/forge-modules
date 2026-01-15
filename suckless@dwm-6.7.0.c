@@ -9,7 +9,7 @@ char *
 download(void)
 {
         CMD("wget https://dl.suckless.org/dwm/dwm-6.7.tar.gz", return NULL);
-        CMD("tar -vxf dwm-6.7", return NULL);
+        CMD("tar -vxf dwm-6.7.tar.gz", return NULL);
         CMD("rm dwm-6.7.tar.gz", return NULL);
         return "dwm-6.7";
 }
