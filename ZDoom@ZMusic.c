@@ -1,0 +1,45 @@
+#include <forge/forge.h>
+
+char *getname(void)  { return "ZDoom@ZMusic"; }
+char *getver(void)   { return "rolling"; }
+char *getdesc(void)  { return "GZDoom's music system as a standalone library"; }
+char *getweb(void)   { return "https://github.com/ZDoom/ZMusic"; }
+
+char *
+download(void)
+{
+        return git_clone("ZDoom", "ZMusic");
+}
+
+int
+build(void)
+{
+        if (!mkdirp("build")) return 0;
+        CD("build", return 0);
+        CMD("cmake -S .. -B .", return 0);
+        return make(NULL);
+}
+
+int
+install(void)
+{
+        CD("build", return 0);
+        return make("install");
+}
+
+FORGE_GLOBAL pkg package = {
+        .name            = getname,
+        .ver             = getver,
+        .desc            = getdesc,
+        .web             = getweb,
+        .deps            = NULL,
+        .msgs            = NULL,
+        .suggested       = NULL,
+        .rebuild         = NULL,
+        .download        = download,
+        .build           = build,
+        .install         = install,
+        .uninstall       = NULL,
+        .update          = forge_pkg_git_update,
+        .get_changes     = forge_pkg_git_pull,
+};
