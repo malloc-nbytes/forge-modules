@@ -23,10 +23,10 @@ build(void)
 int
 install(void)
 {
-        CMD("mv stest" FORGE_PREFERRED_INSTALL_PREFIX "/bin/stest", return 0);
-        CMD("mv dmenu_path" FORGE_PREFERRED_INSTALL_PREFIX "/bin/dmenu_path", return 0);
-        CMD("mv dmenu_run" FORGE_PREFERRED_INSTALL_PREFIX "/bin/dmenu_run", return 0);
-        return cmd("mv dmenu" FORGE_PREFERRED_INSTALL_PREFIX "/bin/dmenu");
+        CMD("mv stest " FORGE_PREFERRED_INSTALL_PREFIX "/bin/stest", return 0);
+        CMD("mv dmenu_path " FORGE_PREFERRED_INSTALL_PREFIX "/bin/dmenu_path", return 0);
+        CMD("mv dmenu_run " FORGE_PREFERRED_INSTALL_PREFIX "/bin/dmenu_run", return 0);
+        return cmd("mv dmenu " FORGE_PREFERRED_INSTALL_PREFIX "/bin/dmenu");
 }
 
 FORGE_GLOBAL pkg package = {
