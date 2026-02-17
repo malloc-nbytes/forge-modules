@@ -1,6 +1,6 @@
 #include <forge/forge.h>
 
-char *getname(void)  { return "suckless@dwm-5.4.0"; }
+char *getname(void)  { return "suckless@dmenu-5.4.0"; }
 char *getver(void)   { return "5.4.0"; }
 char *getdesc(void)  { return "A dynamic menu for X"; }
 char *getweb(void)   { return "https://tools.suckless.org/dmenu/"; }
