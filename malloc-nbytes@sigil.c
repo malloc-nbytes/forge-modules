@@ -1,13 +1,13 @@
 #include <forge/pkg.h>
 #include <forge/cmd.h>
 
-char *getname(void)  { return "malloc-nbytes@ww"; }
+char *getname(void)  { return "malloc-nbytes@sigil"; }
 char *getver(void)   { return "rolling"; }
 char *getdesc(void)  { return "A WIP text editor"; }
-char *getweb(void)   { return "https://www.github.com/malloc-nbytes/wintr.git/"; }
+char *getweb(void)   { return "https://www.github.com/malloc-nbytes/sigil.git/"; }
 
 char *download(void) {
-        return git_clone("malloc-nbytes", "wintr");
+        return git_clone("malloc-nbytes", "sigil");
 }
 
 int build(void) {
