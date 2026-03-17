@@ -1,6 +1,12 @@
 #include <forge/pkg.h>
 #include <forge/cmd.h>
 
+char *msgs[] = {
+        "This editor is a WIP. It may not function properly!",
+        NULL,
+};
+
+char **getmsgs(void) { return msgs; }
 char *getname(void)  { return "malloc-nbytes@ww"; }
 char *getver(void)   { return "rolling"; }
 char *getdesc(void)  { return "A terminal text editor similar to Emacs"; }
@@ -30,7 +36,7 @@ FORGE_GLOBAL pkg package = {
         .desc            = getdesc,
         .web             = getweb,
         .deps            = NULL,
-        .msgs            = NULL,
+        .msgs            = getmsgs,
         .suggested       = NULL,
         .rebuild         = NULL,
         .download        = download,
