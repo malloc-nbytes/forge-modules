@@ -3,7 +3,7 @@
 
 char *getname(void)  { return "malloc-nbytes@ww"; }
 char *getver(void)   { return "rolling"; }
-char *getdesc(void)  { return "A WIP text editor"; }
+char *getdesc(void)  { return "A terminal text editor similar to Emacs"; }
 char *getweb(void)   { return "https://www.github.com/malloc-nbytes/ww.git/"; }
 
 char *download(void) {
