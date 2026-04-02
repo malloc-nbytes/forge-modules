@@ -14,6 +14,12 @@
 
 #include <string.h>
 
+char *msgs[] = {
+        "Install this package to bootstrap auto updates for forge.",
+        NULL,
+};
+
+char **getmsgs(void) { return msgs; }
 char *getname(void)  { return "forge"; }
 char *getver(void)   { return "1.0.0"; }
 char *getdesc(void)  { return "Forge your system"; }
@@ -73,7 +79,7 @@ FORGE_GLOBAL pkg package = {
         .desc        = getdesc,
         .web         = getweb,
         .deps        = NULL,
-        .msgs        = NULL,
+        .msgs        = getmsgs,
         .suggested   = NULL,
         .rebuild     = NULL,
         .download    = download,
