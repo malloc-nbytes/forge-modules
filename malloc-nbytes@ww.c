@@ -20,6 +20,7 @@ download(void)
 int
 build(void)
 {
+        CD("src", return 0);
         CMD(forge_cstr_builder("python3 premake.py --prefix=",
              FORGE_PREFERRED_INSTALL_PREFIX, NULL), return 0);
         return make(NULL);
@@ -28,13 +29,8 @@ build(void)
 int
 install(void)
 {
+        CD("src", return 0);
         return make("install");
-}
-
-int
-uninstall(void)
-{
-        return make("uninstall");
 }
 
 FORGE_GLOBAL pkg package = {
@@ -49,7 +45,7 @@ FORGE_GLOBAL pkg package = {
         .download        = download,
         .build           = build,
         .install         = install,
-        .uninstall       = uninstall,
+        .uninstall       = NULL,
         .update          = forge_pkg_git_update,
         .get_changes     = forge_pkg_git_pull,
 };
