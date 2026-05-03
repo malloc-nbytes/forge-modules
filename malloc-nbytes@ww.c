@@ -30,7 +30,8 @@ int
 install(void)
 {
         CD("src", return 0);
-        return make("install");
+        if (!make("install")) return 0;
+        return cmd("strip -v bin/ww");
 }
 
 FORGE_GLOBAL pkg package = {
