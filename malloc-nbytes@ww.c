@@ -1,5 +1,4 @@
-#include <forge/pkg.h>
-#include <forge/cmd.h>
+#include <forge/forge.h>
 
 char *msgs[] = {
         "This editor is a WIP. It may not function properly!",
@@ -9,24 +8,32 @@ char *msgs[] = {
 char **getmsgs(void) { return msgs; }
 char *getname(void)  { return "malloc-nbytes@ww"; }
 char *getver(void)   { return "rolling"; }
-char *getdesc(void)  { return "A terminal text editor similar to Emacs"; }
+char *getdesc(void)  { return "A terminal text editor for Emacs fans"; }
 char *getweb(void)   { return "https://www.github.com/malloc-nbytes/ww.git/"; }
 
-char *download(void) {
+char *
+download(void)
+{
         return git_clone("malloc-nbytes", "ww");
 }
 
-int build(void) {
-        CMD("autoreconf --install", return 0);
-        if (!configure("./", NULL)) return 0;
+int
+build(void)
+{
+        CMD(forge_cstr_builder("python3 premake.py --prefix=",
+             FORGE_PREFERRED_INSTALL_PREFIX, NULL), return 0);
         return make(NULL);
 }
 
-int install(void) {
+int
+install(void)
+{
         return make("install");
 }
 
-int uninstall(void) {
+int
+uninstall(void)
+{
         return make("uninstall");
 }
 
