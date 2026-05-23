@@ -23,6 +23,7 @@ build(void)
         CD("src", return 0);
         CMD(forge_cstr_builder("python3 premake.py --prefix=",
              FORGE_PREFERRED_INSTALL_PREFIX, NULL), return 0);
+        CMD("strip -v bin/ww", return 0);
         return make(NULL);
 }
 
