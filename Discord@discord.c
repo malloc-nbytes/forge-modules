@@ -28,12 +28,8 @@ int install(void) {
         CMD("chmod -R 755 $DESTDIR/opt/discord", return 0);
         CMD("chmod +x $DESTDIR/opt/discord/Discord", return 0);
         CMD("ln -sf /opt/discord/Discord/discord " FORGE_PREFERRED_INSTALL_PREFIX "/bin/discord", return 0);
+        CMD("ln -sf /opt/discord/Discord/updater_bootstrap " FORGE_PREFERRED_INSTALL_PREFIX "/bin/updater_bootstrap", return 0);
         return 1;
-}
-
-int uninstall(void) {
-        CMD("rm " FORGE_PREFERRED_INSTALL_PREFIX "/bin/discord", return 0);
-        return cmd("rm -rf /opt/discord");
 }
 
 FORGE_GLOBAL pkg package = {
@@ -48,7 +44,7 @@ FORGE_GLOBAL pkg package = {
         .download        = download,
         .build           = NULL,
         .install         = install,
-        .uninstall       = uninstall,
+        .uninstall       = NULL,
         .update          = forge_pkg_update_manual_check,
         .get_changes     = forge_pkg_get_changes_redownload,
 };
