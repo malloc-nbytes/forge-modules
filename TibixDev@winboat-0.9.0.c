@@ -16,7 +16,7 @@ static const char *desktop = "[Desktop Entry]\n"
         "Categories=Emulator;\n"
         "StartupNotify=true";
 
-char *getname(void)  { return "TibixDev@winboat" VERSION; }
+char *getname(void)  { return "TibixDev@winboat-" VERSION; }
 char *getver(void)   { return VERSION; }
 char *getdesc(void)  { return "A Windows Emulator for Linux"; }
 char *getweb(void)   { return "https://github.com/TibixDev/winboat/releases/tag/v0.9.0"; }
