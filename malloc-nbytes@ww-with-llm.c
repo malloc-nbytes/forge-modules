@@ -16,7 +16,7 @@ char *
 download(void)
 {
         mkdirp("ww-with-llm");
-        CMD("git clone malloc-nbytes@ww ww-with-llm", return NULL);
+        CMD("git clone http://github.com/malloc-nbytes/ww.git ww-with-llm", return NULL);
         return "ww-with-llm";
 }
 
