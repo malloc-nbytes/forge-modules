@@ -9,7 +9,7 @@ char *msgs[] = {
 char **getmsgs(void) { return msgs; }
 char *getname(void)  { return "malloc-nbytes@ww-with-llm"; }
 char *getver(void)   { return "rolling"; }
-char *getdesc(void)  { return "A terminal text editor for Emacs fans"; }
+char *getdesc(void)  { return "A terminal text editor for Emacs fans (llm support enabled)"; }
 char *getweb(void)   { return "https://www.github.com/malloc-nbytes/ww.git/"; }
 
 char *
