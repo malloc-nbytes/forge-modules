@@ -1,27 +1,16 @@
 #include <forge/forge.h>
 
-char *getname(void)     { return "suckless@dwm-6.8"; }
-char *getver(void)      { return "6.8"; }
-char *getdesc(void)     { return "A simple window manager"; }
-char *getweb(void)      { return "https://dwm.suckless.org/"; }
+char *getname(void)  { return "suckless@dwm-6.8.0"; }
+char *getver(void)   { return "6.8.0"; }
+char *getdesc(void)  { return "A minimal window manager"; }
+char *getweb(void)   { return "https://dwm.suckless.org/"; }
 
 char *
 download(void)
 {
         CMD("wget https://dl.suckless.org/dwm/dwm-6.8.tar.gz", return NULL);
-
-        if (!mkdirp("dwm-6.8")) {
-                forge_io_rm_dir("dwm-6.8.tar.gz");
-                return NULL;
-        }
-
-        CMD("tar -vxf ./dwm-6.8.tar.gz -C dwm-6.8", {
-                forge_io_rm_dir("dwm-6.8.tar.gz");
-                forge_io_rm_dir("dwm-6.8");
-                return NULL;
-        });
-
-        forge_io_rm_dir("dwm-6.8.tar.gz");
+        CMD("tar -vxf dwm-6.8.tar.gz", return NULL);
+        CMD("rm dwm-6.8.tar.gz", return NULL);
         return "dwm-6.8";
 }
 
@@ -50,6 +39,6 @@ FORGE_GLOBAL pkg package = {
         .build           = build,
         .install         = install,
         .uninstall       = NULL,
-        .update          = forge_pkg_git_update,
-        .get_changes     = forge_pkg_git_pull,
+        .update          = forge_pkg_update_manual_check,
+        .get_changes     = forge_pkg_get_changes_redownload,
 };
