@@ -24,7 +24,6 @@ download(void)
 int
 build(void)
 {
-        if (!cd("raylib-6.2.0")) return 0;
         CMD("cmake -B build -S .                    \
                 -D CMAKE_BUILD_TYPE=Release          \
                 -D CMAKE_INSTALL_PREFIX=/usr         \
@@ -37,7 +36,7 @@ build(void)
 int
 install(void)
 {
-        if (!cd("raylib-6.2.0/build")) return 0;
+        if (!cd("build")) return 0;
         return cmd("cmake --install .");
 }
 
