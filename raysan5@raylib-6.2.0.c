@@ -18,7 +18,7 @@ download(void)
                 (void)cmd("rm raylib-6.2");
                 return NULL;
         })
-        return "raylib-6.2";
+        return "raylib-6.2.0";
 }
 
 int
