@@ -12,8 +12,12 @@ char *
 download(void)
 {
         CMD("wget https://github.com/raysan5/raylib/archive/refs/tags/6.2.tar.gz", return NULL);
-        CMD("tar -vxf raylib-6.2.tar.gz", return NULL);
-        CMD("rm raylib-6.2.tar.gz", return NULL);
+        CMD("tar -vxf 6.2.tar.gz", return NULL);
+        CMD("rm 6.2.tar.gz", return NULL);
+        CMD("mv 6.2.tar.gz raylib-6.2", {
+                (void)cmd("rm ./6.2.tar.gz");
+                return NULL;
+        });
         return "raylib-6.2";
 }
 
